@@ -1,0 +1,24 @@
+@import "../../styles/abstracts/variables";
+
+.shop {
+  padding: 0 7.5rem;
+
+  &__products {
+    background-color: $white-color-light;
+    padding: 2rem;
+  }
+
+  &__products-header {
+    border-bottom: 1px solid $white-color-dark;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__products-body {
+    background-color: $white-color;
+    padding: 2rem;
+  }
+}

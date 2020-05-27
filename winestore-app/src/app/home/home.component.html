@@ -1,0 +1,133 @@
+<section class="home">
+  <!-- BANNER -->
+  <div class="home__banner">
+    <div class="home__banner-content">
+      <div class="home__banner-text">
+        <h1 class="heading-primary heading-primary--main text-white margin-bottom-small">Hugh & Dave</h1>
+        <p class="heading-tertiary text-white margin-bottom-xlarge">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, consectetur!
+          Magni accusantium voluptate voluptatem chakorenta consectetur adipisicing
+        </p>
+      </div>
+      <button class="btn">Shop Now</button>
+    </div>
+  </div>
+
+  <!-- WINE TYPES -->
+  <app-wine-type
+    [reverse]="false"
+    description="  Lorem ipsum dolor sit amet, consectetur adipisicing elit. In,
+       ipsum modi. Animi architecto doloribus eaque esse et exercitationem, nobis nulla
+        quidem voluptate voluptatibus. Minus nam qui quisquam sit tempore voluptatum?"
+    imageSrc="../../assets/images/wine-type-red.jpg"
+    name="Red"
+  ></app-wine-type>
+  <app-wine-type
+    [reverse]="true"
+    description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam assumenda
+      consectetur consequuntur, corporis delectus distinctio error incidunt iste nostrum
+       obcaecati omnis, optio porro quas quia, sapiente sint soluta voluptatum."
+    imageSrc="../../assets/images/wine-type-white.jpg"
+    name="White"
+  ></app-wine-type>
+  <app-wine-type
+    [reverse]="false"
+    description="  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam beatae commodi, corporis
+       deleniti dicta distinctio dolore eveniet explicabo hic inventore labore magnam magni
+        odio porro quia ratione ut velit voluptatum."
+    imageSrc="../../assets/images/wine-type-sparkling.jpg"
+    name="Sparkling"
+  ></app-wine-type>
+  <app-wine-type
+    [reverse]="true"
+    description="  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis eos molestias optio!
+       Aliquam aperiam aspernatur autem beatae commodi, consectetur enim facere fugiat
+       fugit iusto labore modi porro repellat. Doloremque, odio."
+    imageSrc="../../assets/images/wine-type-dessert.jpg"
+    name="Sweet"
+  ></app-wine-type>
+  <app-wine-type
+    [reverse]="false"
+    description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium at autem commodi,
+      dolor doloremque illo incidunt, necessitatibus nostrum numquam officiisperspiciatis quaerat
+      quam reprehenderit, sed sint sit sunt tenetur ut!"
+    imageSrc="../../assets/images/wine-type-rose.jpg"
+    name="Fortified"
+  ></app-wine-type>
+
+  <!-- TOP PRODUCTS -->
+  <div class="home__top-products">
+    <div class="home__top-products-content">
+      <h2 class="heading-secondary text-highlight text-semibold text-center">OUR POPULAR PRODUCTS</h2>
+      <div class="home__top-products-grid">
+        <div class="row">
+          <div *ngFor="let product of products$ | async" class="col-1-of-3">
+            <app-card [product]="product" class="home__top-products-product"></app-card>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngFor="let product of products$ | async" class="col-1-of-3">
+            <app-card [product]="product" class="home__top-products-product"></app-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACKS -->
+  <div class="home__feedbacks">
+    <div class="home__feedbacks-bg">
+      <video autoplay class="home__feedbacks-bg-content" loop muted>
+        <source src="../../assets/videos/home-feedbacks-bg.mp4" type="video/mp4">
+        <source src="../../assets/videos/home-feedbacks-bg.webm" type="video/webm">
+        Your browser is not supported
+      </video>
+    </div>
+    <div class="home__feedbacks-detail">
+      <h2 class="heading-secondary text-highlight text-center text-semibold margin-bottom-xlarge">WE MAKE PEOPLE
+        GENUINELY HAPPY</h2>
+      <div class="row">
+        <div class="col-1-of-3">
+          <app-feedback class="home__feedbacks-feedback"></app-feedback>
+        </div>
+        <div class="col-1-of-3">
+          <app-feedback class="home__feedbacks-feedback"></app-feedback>
+        </div>
+        <div class="col-1-of-3">
+          <app-feedback class="home__feedbacks-feedback"></app-feedback>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBSCRIPTION -->
+  <div class="home__subscription">
+    <h2 class="heading-secondary text-highlight text-semibold">
+      LET'S STAY IN TOUCH
+    </h2>
+    <p class="text-normal margin-bottom-large">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum magnam error doloribus voluptatem quisquam
+      reprehenderit eum quo molestias
+    </p>
+    <div class="home__subscription-form">
+      <div class="home__subscription-form-group margin-bottom-xlarge">
+        <div class="form__group">
+          <input class="form__input" id="email" placeholder="Email Address" required type="text">
+        </div>
+      </div>
+      <div class="margin-bottom-large text-center">
+        <button class="btn btn-primary">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="home__footer">
+    <div class="margin-bottom-xlarge">
+      <img alt="logo" class="home__footer-logo" src="../../assets/images/logo-1000x1000.png">
+    </div>
+    <h3 class="heading-secondary text-white text-semibold">Hugh & Dave Online Wines</h3>
+    <h3 class="heading-tertiary text-white margin-bottom-xlarge">All rights reserved 2020</h3>
+    <p class="text-normal text-white">Developed by Rriz Dizon Pe&ntilde;a</p>
+  </div>
+</section>

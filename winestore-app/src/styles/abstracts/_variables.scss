@@ -1,0 +1,30 @@
+$primary-color: #b83253;
+$primary-color-dark: darken($primary-color, 5%);
+$primary-color-light: lighten($primary-color, 5%);
+
+$black-color: #212121;
+$black-color-dark: darken($black-color, 5%);
+$black-color-light: lighten($black-color, 50%);
+
+$white-color: #f9f9f9;
+$white-color-dark: darken($white-color, 5%);
+$white-color-light: lighten($white-color, 5%);
+
+$success-color: #5ac69f;
+$success-color-dark: darken($success-color, 5%);
+$success-color-light: lighten($success-color, 5%);
+
+$warning-color: #f8cf50;
+$warning-color-dark: darken($warning-color, 5%);
+$warning-color-light: lighten($warning-color, 5%);
+
+$danger-color: #e32227;
+$danger-color-dark: darken($danger-color, 5%);
+$danger-color-light: lighten($danger-color, 5%);
+
+// GRID
+$grid-width: 100%;
+$grid-width-small: 35%;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$gutter-horizontal: 6rem;

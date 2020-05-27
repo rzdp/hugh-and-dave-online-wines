@@ -1,0 +1,49 @@
+<div class="shopping-cart">
+  <!-- HEADING -->
+  <h2 class="heading-secondary text-highlight text-semibold">Shopping Cart</h2>
+  <div class="shopping-cart__items">
+    <div class="shopping-cart__item-header">
+      <h3 class="heading-tertiary text-semibold">1 item added</h3>
+      <h3 class="heading-tertiary">Total: &#8369;4,000.00 </h3>
+    </div>
+
+    <!-- SHOPPING CART ITEMS -->
+    <div class="shopping-cart__item-body">
+      <div class="shopping-cart__item-column">
+        <div class="shopping-cart__item-title">
+          <p class="text-normal text-primary">Image</p>
+        </div>
+        <div class="shopping-cart__item-title">
+          <p class="text-normal text-primary">Name</p>
+        </div>
+        <div class="shopping-cart__item-title">
+          <p class="text-normal text-primary">Price</p>
+        </div>
+        <div class="shopping-cart__item-title">
+          <p class="text-normal text-primary">Unit</p>
+        </div>
+        <div class="shopping-cart__item-title">
+          <p class="text-normal text-primary">Qty</p>
+        </div>
+        <div class="shopping-cart__item-title">
+          <p class="text-normal text-primary">Total</p>
+        </div>
+        <div class="shopping-cart__item-title">
+        </div>
+      </div>
+      <app-shopping-cart-card class="shopping-cart__item-card"></app-shopping-cart-card>
+      <app-shopping-cart-card class="shopping-cart__item-card"></app-shopping-cart-card>
+      <app-shopping-cart-card class="shopping-cart__item-card"></app-shopping-cart-card>
+      <app-shopping-cart-card class="shopping-cart__item-card"></app-shopping-cart-card>
+      <app-shopping-cart-card class="shopping-cart__item-card"></app-shopping-cart-card>
+      <app-shopping-cart-card class="shopping-cart__item-card"></app-shopping-cart-card>
+      <app-shopping-cart-card class="shopping-cart__item-card"></app-shopping-cart-card>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART ACTION BUTTONS -->
+  <div class="shopping-cart__footer">
+    <button (click)="checkout()" class="btn">Clear Shopping Cart</button>
+    <button (click)="checkout()" class="btn btn-primary">Proceed to Checkout</button>
+  </div>
+</div>

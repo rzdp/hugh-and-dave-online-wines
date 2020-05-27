@@ -1,0 +1,50 @@
+<div class="shop">
+  <h2 class="heading-secondary text-highlight text-semibold">Shop</h2>
+  <div class="row">
+    <div class="shop__products">
+      <div class="shop__products-header">
+        <h3 class="heading-tertiary text-semibold">All wines</h3>
+        <h3 class="heading-tertiary">1,890 wines</h3>
+      </div>
+      <div class="shop__products-body">
+        <div class="row">
+          <div class="col-1-of-4">
+            <div class="form__group">
+              <label class="form__label" for="type">Type</label>
+              <select class="form__input" id="type" name="type">
+                <option value="">Select Type</option>
+                <option value="">Red Wine</option>
+                <option value="">White Wine</option>
+                <option value="">Sparkling Wine</option>
+                <option value="">Sweet Wine</option>
+                <option value="">Fortified Wine</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="region">Region</label>
+              <select class="form__input" id="region" name="region">
+                <option value="">Select Region</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <button class="btn btn-primary">Apply Filter</button>
+            </div>
+          </div>
+          <div class="col-3-of-4">
+            <app-product-card></app-product-card>
+            <app-product-card></app-product-card>
+            <ul>
+              <li *ngFor="let item of collection | paginate: { itemsPerPage: 8, currentPage: p }"></li>
+            </ul>
+            <pagination-controls (pageChange)="p = $event"
+                                 autoHide="false"
+                                 class="ngx-pagination-custom"
+                                 nextLabel="Next"
+                                 previousLabel="Prev"
+                                 responsive="true"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

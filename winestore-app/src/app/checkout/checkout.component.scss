@@ -1,0 +1,57 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+
+.checkout {
+  padding: 0 7.5rem;
+
+  // CHECKOUT DETAILS
+  &__checkout-info {
+    background-color: $white-color-light;
+    min-height: 30vh;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__checkout-info-header {
+    border-bottom: 1px solid $white-color-dark;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__checkout-info-body {
+    background-color: $white-color;
+    padding: 2rem;
+    margin-bottom: 3rem;
+
+    .checkout__checkout-info-card {
+      &:not(:last-child) {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid $white-color-dark;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  // CHECKOUT FORM
+  &__checkout-info-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .form__input {
+      width: 40%;
+    }
+
+    &--coupon {
+      margin: 2rem 0;
+      justify-content: center;
+    }
+
+    &--total {
+      border-top: 1px solid $white-color-dark;
+      padding-top: 2rem;
+    }
+  }
+
+
+}

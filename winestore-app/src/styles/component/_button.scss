@@ -1,0 +1,107 @@
+@import '../abstracts/variables';
+
+.btn {
+  background-color: $white-color;
+  color: $black-color;
+  display: inline-block;
+  min-width: 3rem;
+  margin: 0 5px;
+  padding: 1.2rem 3rem;
+  border: 0;
+  border-radius: 2px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: 0;
+  box-shadow: 0 2px 3px rgba($black-color, 0.3);
+  transition: background-color, transform 0.3s;
+
+  &:hover {
+    background-color: $white-color-dark;
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    background-color: $white-color;
+    transform: translateY(-1px);
+  }
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  color: $white-color-light;
+
+  &:hover {
+    background-color: $primary-color-dark;
+  }
+
+  &:active {
+    background-color: $primary-color;
+  }
+}
+
+.btn-success {
+  background-color: $success-color;
+  color: $white-color-light;
+
+  &:hover {
+    background-color: $success-color-dark;
+  }
+
+  &:active {
+    background-color: $success-color;
+  }
+}
+
+
+.btn-warning {
+  background-color: $warning-color;
+  color: $white-color-light;
+
+  &:hover {
+    background-color: $warning-color-dark;
+  }
+
+  &:active {
+    background-color: $warning-color;
+  }
+}
+
+
+.btn-danger {
+  background-color: $danger-color;
+  color: $white-color-light;
+
+  &:hover {
+    background-color: $danger-color-dark;
+  }
+
+  &:active {
+    background-color: $danger-color;
+  }
+}
+
+.btn-icon {
+  svg {
+    fill: $primary-color;
+    width: 1.4rem;
+    height: 1.4rem;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-link {
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-block;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

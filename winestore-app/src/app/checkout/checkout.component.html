@@ -1,0 +1,137 @@
+<div class="checkout">
+  <!-- HEADING -->
+  <h2 class="heading-secondary text-highlight text-semibold">Checkout</h2>
+  <div class="row">
+
+    <!-- LEFT PANE -->
+    <div class="col-2-of-4">
+      <div class="checkout__checkout-info">
+
+        <!-- SHIPPING DETAILS -->
+        <div class="checkout__checkout-info-header">
+          <h3 class="heading-tertiary text-semibold">Shipping Details</h3>
+        </div>
+        <div class="checkout__checkout-info-body">
+          <div class="checkout__checkout-info-group">
+            <p class="text-normal text-semibold">Deliver to:</p>
+            <p class="text-normal">Juan Dela Cruz</p>
+          </div>
+          <div class="checkout__checkout-info-group">
+            <p class="text-normal text-semibold">Address:</p>
+            <p class="text-normal">404 Daangbakal Street, Sto. Ni&ntilde;o, Marikina City, 1800 Philippines</p>
+          </div>
+          <div class="checkout__checkout-info-group">
+            <p class="text-normal text-semibold">Estimated time:</p>
+            <p class="text-normal">3-5 days</p>
+          </div>
+          <div class="checkout__checkout-info-group margin-bottom-medium">
+            <p class="text-normal text-semibold">Delivery Method:</p>
+            <select class="form__input">
+              <option value="">Select delivery method</option>
+              <option value="REGULAR_MAIL">Regular Mail</option>
+              <option value="SEA_MAIL">Sea Mail</option>
+              <option value="EXPRESS_MAIL">Express Mail</option>
+            </select>
+          </div>
+          <div class="checkout__checkout-info-group margin-bottom-medium">
+            <p class="text-normal text-semibold">Payment Method:</p>
+            <select class="form__input">
+              <option value="">Select payment method</option>
+              <option value="CASH_ON_DELIVERY">Cash on Delivery</option>
+              <option value="CREDIT_DEBIT_CARD">Credit/Debit Card</option>
+            </select>
+          </div>
+          <div class="checkout__checkout-info-group">
+            <p class="text-normal text-semibold">Note:</p>
+            <textarea class="form__input"
+                      cols="50"
+                      placeholder="ex. Leave the wines at the back door of the house."
+                      rows="4">
+                    </textarea>
+          </div>
+        </div>
+
+        <!-- DEBIT / CREDIT CARD DETAILS -->
+        <div class="checkout__checkout-info-header">
+          <h3 class="heading-tertiary text-semibold">Credit/Debit Card</h3>
+        </div>
+        <div class="checkout__checkout-info-body">
+          <p class="text-normal margin-bottom-xlarge">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Sunt totam fugiat ratione ab. Cumque error consectetur quos nemo eum!
+            Quae debitis ipsa quam cumqu.
+          </p>
+          <div class="form__group">
+            <label class="form__label" for="cardNumber">Card number</label>
+            <input class="form__input" id="cardNumber" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" type="text">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="name">Name on card</label>
+            <input class="form__input" id="name" name="name" placeholder="ex. Juan Dela Cruz" type="text">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="expireDate">Year</label>
+            <input class="form__input" id="expireDate" name="expireDate" placeholder="Expire Date" type="date">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="cvv">CVC</label>
+            <input class="form__input" id="cvv" name="cvv" placeholder="xxx" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANE -->
+    <div class="col-2-of-4">
+      <div class="checkout__checkout-info">
+        <!-- ORDER INFO -->
+        <div class="checkout__checkout-info-header">
+          <h3 class="heading-tertiary text-semibold">Your Order</h3>
+        </div>
+        <div class="checkout__checkout-info-body">
+          <div class="checkout__checkout-info-card">
+            <p class="text-normal text-semibold text-highlight">1 x Pinot Noir</p>
+            <p class="text-normal margin-bottom-medium">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
+              rerum, obcaecati laudantium vitae cum</p>
+            <p class="heading-tertiary text-highlight text-right">&#8369; 3,000.00 </p>
+          </div>
+          <div class="checkout__checkout-info-card">
+            <p class="text-normal text-semibold text-highlight">1 x Pinot Noir</p>
+            <p class="text-normal margin-bottom-medium">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
+              rerum, obcaecati laudantium vitae cum</p>
+            <p class="heading-tertiary text-highlight text-right">&#8369; 3,000.00 </p>
+          </div>
+          <p class="text-normal">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore praesentium beatae quasi quae, error eaque
+            alias ad ea maxime
+          </p>
+          <div class="checkout__checkout-info-group checkout__checkout-info-group--coupon">
+            <input class="form__input" id="coupon" name="coupon" placeholder="Gift Code" type="text">
+            <button class="btn btn-primary">Apply Gift Code</button>
+          </div>
+          <div class="checkout__checkout-info-group">
+            <p class="text-normal text-semibold">Subtotal</p>
+            <p class="text-normal">&#8369; 6,000.00</p>
+          </div>
+          <div class="checkout__checkout-info-group">
+            <p class="text-normal text-semibold">Shipping Fee</p>
+            <p class="text-normal">&#8369; 125.00</p>
+          </div>
+          <div class="checkout__checkout-info-group margin-bottom-medium">
+            <p class="text-normal text-semibold">Discount</p>
+            <p class="text-normal">&#8369; 0.00</p>
+          </div>
+          <div class="checkout__checkout-info-group checkout__checkout-info-group--total margin-bottom">
+            <h3 class="heading-tertiary text-semibold">Total</h3>
+            <h3 class="heading-tertiary text-semibold">&#8369; 6,125.00</h3>
+          </div>
+        </div>
+
+        <!-- ORDER BUTTON -->
+        <div class="text-center">
+          <button class="btn btn-primary">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+@import '../abstracts/variables';
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /*font-size: 16px;*/
+  line-height: 1.7;
+  color: $black-color-dark;
+}
+
+.heading-primary {
+  text-transform: uppercase;
+  display: block;
+  backface-visibility: hidden;
+
+  &--main {
+    display: block;
+    font-size: 7rem;
+    font-weight: 500;
+
+    @include respond(big-desktop) {
+      font-size: 8rem;
+    }
+
+    @include respond(tab-land) {
+      font-size: 6rem;
+    }
+
+    @include respond(phone) {
+      font-size: 5rem;
+    }
+  }
+
+  &--sub {
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 1.75rem;
+  }
+}
+
+.heading-secondary {
+  font-size: 4rem;
+  font-weight: 400;
+  backface-visibility: hidden;
+}
+
+.heading-tertiary {
+  font-size: 2rem;
+  font-weight: 400;
+  backface-visibility: hidden;
+
+  @include respond(tab-port) {
+    font-size: 1.7rem;
+  }
+
+  @include respond(phone) {
+    font-size: 1.6rem;
+  }
+}
+
+.text-normal {
+  font-size: 1.6rem;
+}
+
+.text-white {
+  color: $white-color-light;
+}
+
+.text-light {
+  color: $white-color;
+}
+
+.text-grey {
+  color: $black-color-light;
+}
+
+.text-primary {
+  color: $primary-color;
+}
+
+.text-success {
+  color: $success-color;
+}
+
+.text-danger {
+  color: $danger-color;
+}
+
+.text-warning {
+  color: $warning-color;
+}
+
+.text-highlight {
+  background-image: linear-gradient(to bottom left, $primary-color-light, $primary-color-dark);
+  -webkit-background-image: linear-gradient(to bottom right, $primary-color-light, $primary-color-dark);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-semibold {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 800;
+}

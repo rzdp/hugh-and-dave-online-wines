@@ -1,0 +1,15 @@
+<div class="card">
+  <!-- IMAGE -->
+  <div class="card__image-box">
+    <img alt="image" class="card__image"
+         src="https://purepng.com/public/uploads/medium/purepng.com-wine-bottlebottle-food-wine-object-drink-alcohol-beverage-941524620427hspl2.png">
+  </div>
+
+  <!-- CARD INFORMATION -->
+  <div class="card__details">
+    <h2 class="heading-tertiary text-semibold text-highlight">{{ product.name | uppercase }}</h2>
+    <p class="text-normal text-center"> {{ product.description }} </p>
+    <h2 class="heading-secondary text-semibold">&#8369; {{  product.price |  number: '1.0-0' }} </h2>
+  </div>
+
+</div>

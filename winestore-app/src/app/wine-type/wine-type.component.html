@@ -1,0 +1,29 @@
+<div class="wine-type">
+  <div *ngIf="reverse; then reverseContent else content"></div>
+
+  <!-- WINE TYPE LEFT -->
+  <ng-template #content>
+    <div class="wine-type__content">
+      <img [src]="imageSrc" alt="wine-type-image" class="wine-type__image">
+      <div class="wine-type__text">
+        <h2 class="heading-secondary text-highlight">{{ name }}</h2>
+        <p class="heading-tertiary">
+          {{ description }}
+        </p>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- WINE TYPE RIGHT -->
+  <ng-template #reverseContent>
+    <div class="wine-type__content wine-type__content--reverse">
+      <div class="wine-type__text">
+        <h2 class="heading-secondary text-highlight">{{ name }}</h2>
+        <p class="heading-tertiary">
+          {{ description }}
+        </p>
+      </div>
+      <img [src]="imageSrc" alt="wine-type-image" class="wine-type__image">
+    </div>
+  </ng-template>
+</div>

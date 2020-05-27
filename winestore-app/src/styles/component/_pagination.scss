@@ -1,0 +1,40 @@
+@import "../../styles/abstracts/variables";
+
+.ngx-pagination {
+  font-size: 1.6rem;
+  color: $black-color;
+  align-self: flex-end;
+
+  .pagination-previous a::before,
+  .pagination-previous.disabled::before,
+  .pagination-next a::after,
+  .pagination-next.disabled::after {
+    content: '' !important;
+    margin: 0 !important;
+  }
+
+  li {
+    background-color: $white-color;
+    border: 1px solid $white-color-dark;
+    border-radius: 3px;
+
+    a {
+      outline: none;
+      height: 100%;
+      padding: 1rem 1.5rem;
+    }
+  }
+}
+
+.ngx-pagination-custom .ngx-pagination {
+  .current, .disabled {
+    border: 1px solid $white-color-dark;
+    padding: 1rem 1.5rem;
+    cursor: no-drop;
+    border-radius: 3px;
+  }
+
+  .current {
+    background-color: $primary-color;
+  }
+}

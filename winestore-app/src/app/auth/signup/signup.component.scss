@@ -1,0 +1,45 @@
+@import "../../../styles/abstracts/variables";
+
+.signup {
+  min-height: 100vh;
+  display: flex;
+
+  // BACKGROUND
+  &__background {
+    background-image: linear-gradient(to bottom right, rgba($black-color, 0.4), rgba($black-color-dark, 0.7)),
+    url('../../../assets/images/register-background-1920x1080.jpg');
+    flex: 0 0 25%;
+  }
+
+  // REGISTRATION FORM
+  &__form-container {
+    padding: 5rem;
+    flex: 1;
+    background-color: $white-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__header {
+    align-self: flex-start;
+    border-bottom: 1px solid $white-color-dark;
+    margin-bottom: 2rem;
+
+    &:not(:first-child) {
+      margin-top: 5rem;
+    }
+  }
+
+  &__form {
+    width: 50%;
+  }
+
+  &__action {
+    margin-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

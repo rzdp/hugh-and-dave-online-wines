@@ -1,0 +1,76 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+
+.wine-type {
+  height: 85vh;
+
+  @include respond(tab-port) {
+    padding: 3rem;
+    height: 70vh;
+  }
+
+  @include respond(phone) {
+    padding: 4rem;
+    height: 70vh;
+  }
+
+  &__content {
+    height: 100%;
+    padding: 7.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include respond(tab-port) {
+      align-items: flex-start;
+      padding: 0;
+    }
+
+    @include respond(phone) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    &--reverse {
+      @include respond(phone) {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+
+  &__image {
+    height: 100%;
+    box-shadow: 0 2px 3px rgba($black-color, 0.3);
+
+    @include respond(tab-port) {
+      height: 70%;
+    }
+
+    @include respond(phone) {
+      height: 50%;
+    }
+  }
+
+  &__text {
+    padding: 15rem;
+    height: 100%;
+
+    @include respond(big-desktop) {
+      padding: 20rem;
+      text-align: center;
+    }
+
+    @include respond(tab-land) {
+      padding: 10rem 2rem;
+      text-align: center;
+    }
+
+    @include respond(tab-port) {
+      padding: 2rem;
+      text-align: center;
+    }
+  }
+
+}

@@ -1,0 +1,22 @@
+USE winestore;
+
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('5978197801', 29064585, 220080261497, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('1736814784', 29173434, 753662791367, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('5804231855', 29135543, 449592329827, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('3436632869', 29388596, 951728346336, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('3741119555', 29417777, 405002620151, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('2543643506', 29285903, 121243288353, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('8504660876', 29195168, 686550320810, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('7636062123', 29482117, 841044709409, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('6967837580', 29223217, 937855368975, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('8141464714', 29396709, 386786878306, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('8444463182', 29437997, 395619871007, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('6936259658', 29741346, 992706017689, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('3579977238', 29355960, 795117708330, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('2623833014', 29401384, 100692117032, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('4916497228', 29090563, 722838897455, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('8845145720', 29375487, 199049419629, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('7767689026', 29007773, 213592011678, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('6074874921', 29053657, 915353999070, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('5768078033', 29276157, 667533098872, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');
+insert into Contact (Mobile, Tel, Fax, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) values ('8957543469', 29708228, 137171192528, 'WINESTORE_API', '2020-05-21 00:00:00', 'WINESTORE_API', '2020-05-21 00:00:00');

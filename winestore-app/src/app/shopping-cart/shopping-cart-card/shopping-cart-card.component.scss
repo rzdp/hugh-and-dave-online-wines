@@ -1,0 +1,54 @@
+@import "../../../styles/abstracts/variables";
+
+.shopping-cart-card {
+  min-height: 10rem;
+  background-color: $white-color;
+  border-radius: 3px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-evenly;
+  box-shadow: 0 2px 10px rgba($black-color, 0.1);
+
+  margin-bottom: 2rem;
+  font-weight: 400;
+
+  input {
+    width: 7.5rem;
+    text-align: center;
+  }
+
+  // ITEM DETAILS
+  &__item {
+    flex: 1 1 0;
+    width: 0;
+  }
+
+  // IMAGE
+  &__image {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+
+  // ADD TO CART BUTTON
+  &__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: $black-color;
+    transition: all 0.3s;
+
+    &:hover {
+      fill: $primary-color;
+      transform: translateY(-2px);
+      cursor: pointer;
+    }
+
+    &:active {
+      fill: $primary-color-light;
+      transform: translateY(-1px);
+    }
+  }
+
+
+}

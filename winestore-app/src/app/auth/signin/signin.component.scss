@@ -1,0 +1,39 @@
+@import "../../../styles/abstracts/variables";
+
+.signin {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  // BACKGROUND
+  &__background {
+    height: 100%;
+    background-image: linear-gradient(to bottom right, rgba($black-color, 0.4), rgba($black-color-dark, 0.7)),
+    url('../../../assets/images/login-background-1920x1080.jpg');
+    flex: 0 0 75%;
+  }
+
+  // SIGN IN FORM
+  &__form-container {
+    flex: 1;
+    height: 100%;
+    background-color: $white-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  &__logo {
+    height: 25rem;
+    width: 25rem;
+    align-self: center;
+    margin-bottom: 2rem;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

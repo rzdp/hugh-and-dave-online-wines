@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>    
+      <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    </head>
+<style>
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        font-family: "Lato", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        background-color: #f5f9fa;
+        padding: 20px;
+        line-height: 1.7;
+    }
+    
+    .header {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .body {
+        background-color: #ffffff;
+        padding: 40px;
+        color: #212121;
+    }
+
+    .text-heading {
+        margin-bottom: 20px;
+    }
+
+    .text-greeting {
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .text-paragraph {
+        color: #888888;
+    }
+
+    .margin-bottom-20 {
+        margin-bottom: 20px;
+    }
+    .header img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .button {
+        background-color: #b83253;
+        color: #ffffff;
+        outline: 0;
+        padding: 15px 10px;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-bottom: 20px;
+        display: block;
+        width: 200px;
+    }
+
+    .button:hover {
+        background-color: #971031;
+    }
+
+    .footer {
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+</style>
+<body>
+    <div class="header">
+        <img src="assets/images/logo-1000x1000.png">
+    </div>
+    <div class="body">
+        <h1 class="text-heading">Verify your email address</h1>
+        <p class="text-greeting">Hey ${firstName}!</p>
+        <p class="text-paragraph margin-bottom-20">You're almost ready to start enjoying Hugh & Dave Wine Store! <br> Click the big button below to verify your email address.</p>
+        
+        <a class="button" href="#">Verify Email Address</a>
+        <p class="text-paragraph margin-bottom-20">If you didn't initiate this request, you can ignore this email message</p>
+        <p class="text-greeting">All the best, <br> Hugh & Dave Online Wines</p>
+    </div>
+    <div class="footer">
+        <p class="text-paragraph margin-bottom-20">
+            Please do not reply to this message. If you have any questions, please contact 
+            <a href="#">
+                Hugh & Dave Online Wines Support.
+            </a>
+        </p>
+        <p class="text-paragraph">
+            &copy; 2020 Hugh & Dave Onlin Wines. All Rights Reserved.
+        </p>    
+    </div>
+</body>
+</html>

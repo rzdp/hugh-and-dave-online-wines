@@ -1,0 +1,182 @@
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/mixins';
+@import '../../styles/component/button';
+
+.home {
+  // BANNER
+  &__banner {
+    height: 77.5vh;
+    background-image: linear-gradient(to bottom right, rgba($black-color, 0.2), rgba($black-color-dark, 0.5)),
+    url('../../assets/images/home-banner-1280x880.jpg');
+    background-size: cover;
+    background-position: top;
+    margin: 0 7.5rem;
+    position: relative;
+
+    @include respond(tab-port) {
+      margin: 0;
+    }
+
+    @include respond(phone) {
+      height: 87.5vh;
+    }
+  }
+
+  &__banner-content {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+
+    @include respond(tab-land) {
+      text-align: center;
+      @include absCenter;
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+
+  &__banner-text {
+    width: 45%;
+
+    @include respond(tab-land) {
+      width: 100%;
+    }
+  }
+
+  // TOP PRODUCTS
+  &__top-products {
+    background-color: $white-color-light;
+    min-height: 100vh;
+  }
+
+  &__top-products-content {
+    padding: 7.5rem;
+  }
+
+  &__top-products-grid {
+    margin-top: 5rem;
+  }
+
+  &__top-products-products {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__top-products-product {
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+
+  // FEEDBACKS
+  &__feedbacks {
+    position: relative;
+    min-height: 75vh;
+    background-color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__feedbacks-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  &__feedbacks-bg-content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__feedbacks-detail {
+    padding: 7.5rem;
+
+    @include respond(phone) {
+      padding: 5rem;
+    }
+  }
+
+  &__feedbacks-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 7.5rem;
+
+  }
+
+  &__feedbacks-feedback {
+    &:not(:last-child) {
+      margin-right: 5rem;
+      @include respond(tab-port) {
+        margin-right: 0;
+      }
+
+    }
+  }
+
+  // SUBSCRIPTION
+  &__subscription {
+    min-height: 35vh;
+    background-color: $white-color;
+    padding: 5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include respond(tab-port) {
+      padding: 4rem;
+    }
+
+    p {
+      @include respond(tab-port) {
+        text-align: center;
+      }
+    }
+  }
+
+  &__subscription-form {
+    width: 50%;
+
+    @include respond(tab-port) {
+      width: 70%;
+    }
+  }
+
+  &__subscription-icon {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 3rem;
+    opacity: 0.1;
+    fill: $primary-color;
+
+  }
+
+  // FOOTER
+  &__footer {
+    background-color: $black-color-dark;
+    min-height: 40vh;
+    padding: 7.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include respond(phone) {
+      padding: 4rem;
+      text-align: center;
+    }
+  }
+
+  &__footer-logo {
+    height: 10rem;
+  }
+}
