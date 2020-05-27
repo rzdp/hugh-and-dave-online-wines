@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class UserImageCreationException extends RuntimeException {
+public class UserUpdatePhotoException extends RuntimeException {
 
-    public UserImageCreationException(String message) {
+    public UserUpdatePhotoException(String message) {
         super(message);
     }
 }

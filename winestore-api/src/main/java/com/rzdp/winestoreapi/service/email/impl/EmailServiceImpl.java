@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 
@@ -45,8 +46,9 @@ public class EmailServiceImpl implements EmailService {
         try {
             helper = new MimeMessageHelper(message, true);
             Template template = freeMarkerConfiguration.getTemplate(FREEMARKER_USER_VERIFICATION);
-            String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, mailDto.getProps());
-            helper.setFrom(mailDto.getSender());
+            String html = FreeMarkerTemplateUtils.processTemplateIntoString(template,
+                    mailDto.getProps());
+            helper.setFrom(new InternetAddress(mailDto.getSender()));
             helper.setTo(mailDto.getReceiver());
             helper.setSubject(mailDto.getSubject());
             helper.setText(html, true);

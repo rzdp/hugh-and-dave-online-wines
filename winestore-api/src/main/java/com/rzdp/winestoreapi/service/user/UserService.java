@@ -3,8 +3,9 @@ package com.rzdp.winestoreapi.service.user;
 import com.rzdp.winestoreapi.dto.UserDto;
 import com.rzdp.winestoreapi.dto.request.SignInRequest;
 import com.rzdp.winestoreapi.dto.request.SignUpRequest;
-import com.rzdp.winestoreapi.dto.response.SignInResponse;
 import com.rzdp.winestoreapi.dto.response.MessageResponse;
+import com.rzdp.winestoreapi.dto.response.SignInResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
@@ -15,4 +16,6 @@ public interface UserService {
     MessageResponse signUp(SignUpRequest request);
 
     MessageResponse verifySignUp(long userId);
+
+    MessageResponse updateUserPhoto(long userId, MultipartFile file);
 }

@@ -1,8 +1,8 @@
-package com.rzdp.winestoreapi.service.user.impl;
+package com.rzdp.winestoreapi.service.role.impl;
 
 import com.rzdp.winestoreapi.entity.Role;
 import com.rzdp.winestoreapi.repository.RoleRepository;
-import com.rzdp.winestoreapi.service.user.GetRoleByName;
+import com.rzdp.winestoreapi.service.role.GetRoleByName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

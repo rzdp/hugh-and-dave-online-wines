@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
@@ -29,4 +31,9 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
     }
 
+    @PutMapping("/v1/users/{id}/photo")
+    public ResponseEntity<MessageResponse> updateUserPhoto(@PathVariable("id") long userId,
+                                                           @RequestParam("photo") MultipartFile file) {
+        return new ResponseEntity<>(userService.updateUserPhoto(userId, file), HttpStatus.OK);
+    }
 }

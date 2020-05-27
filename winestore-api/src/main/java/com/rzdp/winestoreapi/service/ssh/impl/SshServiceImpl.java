@@ -6,6 +6,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
+import com.rzdp.winestoreapi.config.properties.MessageProperties;
 import com.rzdp.winestoreapi.config.properties.SshProperties;
 import com.rzdp.winestoreapi.exception.SshException;
 import com.rzdp.winestoreapi.service.ssh.SshService;
@@ -26,11 +27,15 @@ public class SshServiceImpl implements SshService {
     private static final String SFTP_CHANNEL_TYPE = "sftp";
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     private final SshProperties sshProperties;
+    private final MessageProperties messageProperties;
 
     @Autowired
-    public SshServiceImpl(SshProperties sshProperties) {
+    public SshServiceImpl(SshProperties sshProperties,
+                          MessageProperties messageProperties) {
         this.sshProperties = sshProperties;
+        this.messageProperties = messageProperties;
     }
 
     @Override
@@ -79,7 +84,7 @@ public class SshServiceImpl implements SshService {
             log.info("Uploading {} successful!", remoteFile);
             return remoteFile;
         } catch (JSchException | SftpException | IOException e) {
-            throw new SshException("Unable to upload file in remote server " + e);
+            throw new SshException(messageProperties.getException().getSsh().getUploadFile() + e);
         } finally {
             // Disconnect
             log.info("Disconnecting from SSH remote server");

@@ -1,4 +1,4 @@
-package com.rzdp.winestoreapi.service.user;
+package com.rzdp.winestoreapi.service.role;
 
 import com.rzdp.winestoreapi.entity.Role;
 

@@ -12,10 +12,36 @@ import org.springframework.stereotype.Component;
 public class MessageProperties {
 
     private SuccessMessage success;
+    private ExceptionMessage exception;
 
     @Data
     public static class SuccessMessage {
         private String register;
         private String verifyUser;
+        private String updatePhoto;
+    }
+
+    @Data
+    public static class ExceptionMessage {
+        private AccountMessage account;
+        private UserMessage user;
+        private SshMessage ssh;
+
+        @Data
+        public static class AccountMessage {
+            private String alreadyExist;
+            private String alreadyVerified;
+        }
+
+        @Data
+        public static class UserMessage {
+            private String updatePhoto;
+        }
+
+        @Data
+        public static class SshMessage {
+            private String uploadFile;
+        }
+
     }
 }

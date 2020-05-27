@@ -78,7 +78,8 @@ public class UserImageServiceImpl implements UserImageService {
         Image scaledInstance = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage bufferedImage = convertImageToBufferedImage(scaledInstance);
         File imageFile = new File(filePath);
-        boolean fileCreated = ImageIO.write(bufferedImage, imageUserProperties.getFormat(), imageFile);
+        boolean fileCreated = ImageIO.write(bufferedImage, imageUserProperties.getFormat(),
+                imageFile);
         if (fileCreated) {
             return imageFile;
         }

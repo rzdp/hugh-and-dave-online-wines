@@ -36,7 +36,7 @@ public class Account extends BaseEntity {
     @Column(name = "AccountId")
     private Long accountId;
 
-    @Column(name = "Email")
+    @Column(name = "Email", unique = true)
     @NotBlank(message = "{account.email.not-blank}")
     @Size(max = 50, message = "{account.email.size}")
     @Email(message = "{account.email.email}")
