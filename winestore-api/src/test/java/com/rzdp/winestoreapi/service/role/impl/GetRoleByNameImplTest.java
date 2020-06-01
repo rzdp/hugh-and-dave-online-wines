@@ -5,27 +5,17 @@ import com.rzdp.winestoreapi.entity.Role;
 import com.rzdp.winestoreapi.exception.DataNotFoundException;
 import com.rzdp.winestoreapi.repository.RoleRepository;
 import com.rzdp.winestoreapi.util.TestUtil;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -36,12 +26,16 @@ class GetRoleByNameImplTest {
     private MessageProperties messageProperties;
 
     @InjectMocks
+    @Autowired
     private GetRoleByNameImpl getRoleByName;
 
     @Mock
     private RoleRepository roleRepositoryMock;
 
+
+
     @Test
+    @DisplayName("run() returns role when successful")
     void run_ReturnRole_WhenSuccessful() {
         // Arrange
         Role role = TestUtil.getRoleData();
@@ -59,16 +53,16 @@ class GetRoleByNameImplTest {
     }
 
     @Test
+    @DisplayName("run() throws DataNotFoundException when role does not exist")
     void run_ThrowDataNotFoundException_WhenRoleDoesNotExists() {
         // Arrange
-        Role role = TestUtil.getRoleData();
         String name = "INVALID_ROLE";
         when(roleRepositoryMock.findByName(name))
                 .thenReturn(Optional.empty());
 
         // Act and Assert
-        Assertions.assertThatExceptionOfType(DataNotFoundException.class)
+        assertThatExceptionOfType(DataNotFoundException.class)
                 .isThrownBy(() -> getRoleByName.run(name))
-                .withMessage(messageProperties.getException().getRole().getDataNotFound());
+                .withMessage(messageProperties.getException().getDataNotFound().getRole());
     }
 }

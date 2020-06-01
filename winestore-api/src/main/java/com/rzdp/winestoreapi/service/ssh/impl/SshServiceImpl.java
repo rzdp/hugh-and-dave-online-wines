@@ -84,7 +84,7 @@ public class SshServiceImpl implements SshService {
             log.info("Uploading {} successful!", remoteFile);
             return remoteFile;
         } catch (JSchException | SftpException | IOException e) {
-            throw new SshException(messageProperties.getException().getSsh().getUploadFile() + e);
+            throw new SshException(messageProperties.getException().getUploadFile().getSsh() + e);
         } finally {
             // Disconnect
             log.info("Disconnecting from SSH remote server");

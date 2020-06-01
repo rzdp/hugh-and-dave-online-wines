@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
 
         if (existsAccountByEmail.run(email)) {
             throw new AccountAlreadyExistException(messageProperties
-                    .getException().getAccount().getAlreadyExist());
+                    .getException().getAlreadyExist().getAccount());
         }
         // Map request to user entity
         mapper.addConverter(new RegisterRequestToUserMapper());
@@ -208,7 +208,7 @@ public class UserServiceImpl implements UserService {
         Account account = user.getAccount();
         if (user.isActive() || account.isVerified()) {
             throw new AccountAlreadyVerifiedException(messageProperties
-                    .getException().getAccount().getAlreadyVerified());
+                    .getException().getAlreadyVerified().getAccount());
         }
         user.setActive(true);
         account.setVerified(true);
@@ -240,7 +240,7 @@ public class UserServiceImpl implements UserService {
             large = userImageService.createImageFile(userId, data, largeSize);
         } catch (IOException e) {
             throw new UserUpdatePhotoException(messageProperties.getException()
-                    .getUser().getUpdatePhoto() + e.getMessage());
+                    .getUpdatePhoto().getUser() + e.getMessage());
         }
 
         // Upload images to sftp

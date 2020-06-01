@@ -29,7 +29,8 @@ public class GetUserByIdImpl implements GetUserById {
     public User run(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (!optionalUser.isPresent()) {
-            throw new DataNotFoundException(messageProperties.getException().getUser().getDataNotFound());
+            throw new DataNotFoundException(messageProperties.getException()
+                    .getDataNotFound().getUser());
         }
         return optionalUser.get();
     }

@@ -28,7 +28,7 @@ public class GetRoleByNameImpl implements GetRoleByName {
         Optional<Role> optionalRole = roleRepository.findByName(name);
         if (!optionalRole.isPresent()) {
             throw new DataNotFoundException(messageProperties
-                    .getException().getRole().getDataNotFound());
+                    .getException().getDataNotFound().getRole());
         }
         return optionalRole.get();
     }

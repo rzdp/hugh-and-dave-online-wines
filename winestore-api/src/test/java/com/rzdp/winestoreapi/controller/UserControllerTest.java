@@ -40,7 +40,7 @@ class UserControllerTest {
 
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.addConverter(new UserToUserDtoMapper());
 
@@ -75,7 +75,6 @@ class UserControllerTest {
     @Test
     @DisplayName("updateUserPhoto() returns success message when successful")
     void updateUserPhoto_ReturnsSuccessMessage_WhenSuccessful() throws IOException {
-
         // Arrange
         long userId = TestUtil.getUserData().getUserId();
         String expectedMessage = messageProperties.getSuccess().getUpdatePhoto();

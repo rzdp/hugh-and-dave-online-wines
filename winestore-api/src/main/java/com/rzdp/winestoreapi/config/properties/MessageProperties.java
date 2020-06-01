@@ -23,33 +23,37 @@ public class MessageProperties {
 
     @Data
     public static class ExceptionMessage {
-        private AccountMessage account;
-        private UserMessage user;
-        private RoleMessage role;
-        private SshMessage ssh;
+        private DataNotFound dataNotFound;
+        private AlreadyExist alreadyExist;
+        private AlreadyVerified alreadyVerified;
+        private UpdatePhoto updatePhoto;
+        private UploadFile uploadFile;
 
         @Data
-        public static class AccountMessage {
-            private String alreadyExist;
-            private String alreadyVerified;
-            private String dataNotFound;
+        public static class DataNotFound {
+            private String account;
+            private String role;
+            private String user;
         }
 
         @Data
-        public static class UserMessage {
-            private String updatePhoto;
-            private String dataNotFound;
+        public static class AlreadyExist {
+            private String account;
         }
 
         @Data
-        public static class RoleMessage {
-            private String dataNotFound;
+        public static class AlreadyVerified {
+            private String account;
         }
 
         @Data
-        public static class SshMessage {
-            private String uploadFile;
+        public static class UpdatePhoto {
+            private String user;
         }
 
+        @Data
+        public static class UploadFile {
+            private String ssh;
+        }
     }
 }

@@ -1,10 +1,10 @@
 package com.rzdp.winestoreapi.repository;
 
-import com.rzdp.winestoreapi.util.TestUtil;
 import com.rzdp.winestoreapi.entity.Account;
 import com.rzdp.winestoreapi.entity.Address;
 import com.rzdp.winestoreapi.entity.Contact;
 import com.rzdp.winestoreapi.entity.User;
+import com.rzdp.winestoreapi.util.TestUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ class UserRepositoryTest {
 
     @Test
     @DisplayName("findAll() returns list of all users when users does exist from database")
-    public void findAll_ReturnsList_WhenUsersDoesExistFromDatabase() {
+    void findAll_ReturnsList_WhenUsersDoesExistFromDatabase() {
         // Arrange
         userRepository.save(TestUtil.getUserData());
 
@@ -40,7 +40,7 @@ class UserRepositoryTest {
 
     @Test
     @DisplayName("findAll() returns empty list of users when users does not exist from database")
-    public void findAll_ReturnsEmptyList_WhenUsersDoesNotExistFromDatabase() {
+    void findAll_ReturnsEmptyList_WhenUsersDoesNotExistFromDatabase() {
         // Act
         List<User> users = userRepository.findAll();
 
@@ -50,7 +50,7 @@ class UserRepositoryTest {
 
     @Test
     @DisplayName("findById() returns non-empty optional user when user ID does exist from database")
-    public void findById_ReturnsNonEmptyOptionalUser_WhenUserIdDoesExistFromDatabase() {
+    void findById_ReturnsNonEmptyOptionalUser_WhenUserIdDoesExistFromDatabase() {
         // Arrange
         User savedUser = userRepository.save(TestUtil.getUserData());
 
@@ -64,7 +64,7 @@ class UserRepositoryTest {
 
     @Test
     @DisplayName("findById() returns empty optional user when user ID does not exist from database")
-    public void findById_ReturnsEmptyOptionalUser_WhenUserIdDoesNotExistFromDatabase() {
+    void findById_ReturnsEmptyOptionalUser_WhenUserIdDoesNotExistFromDatabase() {
         // Arrange
         long userId = 1000;
 
@@ -78,7 +78,7 @@ class UserRepositoryTest {
 
     @Test
     @DisplayName("save() creates a user when successful")
-    public void save_CreateUser_WhenSuccessful() {
+    void save_CreateUser_WhenSuccessful() {
         // Arrange
         User user = TestUtil.getUserData();
 
@@ -93,7 +93,7 @@ class UserRepositoryTest {
 
     @Test
     @DisplayName("save() updates a user when successful")
-    public void save_UpdateUser_WhenSuccessful() {
+    void save_UpdateUser_WhenSuccessful() {
         // Arrange
         User user = TestUtil.getUserData();
 
@@ -125,7 +125,7 @@ class UserRepositoryTest {
     @Test
     @DisplayName("save() throws a ConstraintViolationException when some of user details are " +
             "invalid")
-    public void save_ThrowsConstraintViolationException_WhenSomeUserDetailsAreInvalid() {
+    void save_ThrowsConstraintViolationException_WhenSomeUserDetailsAreInvalid() {
         // Arrange
         User user = TestUtil.getUserData();
         user.setSalutation("INVALID_DATA");
