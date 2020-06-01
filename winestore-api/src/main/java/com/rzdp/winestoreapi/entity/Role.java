@@ -1,6 +1,8 @@
 package com.rzdp.winestoreapi.entity;
 
 import com.rzdp.winestoreapi.entity.base.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -28,7 +30,9 @@ import static javax.persistence.CascadeType.REFRESH;
 @Entity
 @Table(name = "Role")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 @EqualsAndHashCode(callSuper = true)
 public class Role extends BaseEntity {
 
@@ -40,7 +44,7 @@ public class Role extends BaseEntity {
     @Column(name = "Name")
     @NotBlank(message = "{role.name.not-blank}")
     @Size(max = 50, message = "{role.name.size}")
-    @Pattern(regexp = "^[A-Za-z ]+$", message = "{role.name.pattern}")
+    @Pattern(regexp = "^[A-Za-z_ ]+$", message = "{role.name.pattern}")
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})

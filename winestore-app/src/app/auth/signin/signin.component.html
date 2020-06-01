@@ -1,26 +1,32 @@
 <div class="signin">
-  <!-- BACKGROUND -->
-  <div class="signin__background">
-  </div>
-
+  <!-- HEADING -->
+  <h2 class="heading-secondary text-highlight text-semibold">Hello!</h2>
   <!-- SIGN IN FORM -->
-  <div class="signin__form-container">
-    <img alt="logo" class="signin__logo" src="../../../assets/images/logo-1000x1000.png">
-    <h2 class="heading-tertiary text-highlight margin-bottom-xlarge">Sign In</h2>
-    <div class="form__group">
-      <label class="form__label" for="email">Email Address</label>
-      <input class="form__input" id="email" name="email" placeholder="Enter email address" type="text">
-    </div>
-    <div class="form__group">
-      <label class="form__label" for="password">Password</label>
-      <input class="form__input" id="password" name="password" placeholder="Enter password" type="password">
-    </div>
-    <div class="form__group">
-      <a class="btn-link text-primary margin-bottom-xlarge">Forgot your password?</a>
-    </div>
-    <div class="form__group signin__action">
-      <a class="btn-link text-primary" routerLink="/sign-up">Create your account</a>
-      <button class="btn btn-primary">Sign In</button>
+  <div class="row">
+    <!-- LEFT PANE -->
+    <div class="col-1-of-2">
+      <div class="signin__signin-form">
+        <div class="signin__signin-form-header">
+          <h3 class="heading-tertiary text-semibold">Sign in to your account</h3>
+        </div>
+        <div class="signin__form-container">
+          <div class="form__group">
+            <label class="form__label" for="email">Email Address</label>
+            <input class="form__input" id="email" name="email" placeholder="Enter email address" type="text">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="password">Password</label>
+            <input class="form__input" id="password" name="password" placeholder="Enter password" type="password">
+          </div>
+          <div class="form__group">
+            <a class="btn-link text-primary margin-bottom-xlarge" routerLink="/sign-up">Forgot your password?</a>
+          </div>
+          <div class="form__group signin__action">
+            <a class="btn-link text-primary" routerLink="/sign-up">Create your account</a>
+            <button class="btn btn-primary">Sign In</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

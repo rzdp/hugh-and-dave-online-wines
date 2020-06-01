@@ -25,17 +25,25 @@ public class MessageProperties {
     public static class ExceptionMessage {
         private AccountMessage account;
         private UserMessage user;
+        private RoleMessage role;
         private SshMessage ssh;
 
         @Data
         public static class AccountMessage {
             private String alreadyExist;
             private String alreadyVerified;
+            private String dataNotFound;
         }
 
         @Data
         public static class UserMessage {
             private String updatePhoto;
+            private String dataNotFound;
+        }
+
+        @Data
+        public static class RoleMessage {
+            private String dataNotFound;
         }
 
         @Data

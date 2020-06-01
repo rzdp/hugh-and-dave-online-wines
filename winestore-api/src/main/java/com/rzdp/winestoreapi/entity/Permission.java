@@ -1,6 +1,8 @@
 package com.rzdp.winestoreapi.entity;
 
 import com.rzdp.winestoreapi.entity.base.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,7 +31,9 @@ import static javax.persistence.CascadeType.REFRESH;
 @Entity
 @Table(name = "Permission")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 @EqualsAndHashCode(callSuper = true)
 public class Permission extends BaseEntity {
 
@@ -42,7 +46,7 @@ public class Permission extends BaseEntity {
     @Column(name = "Name")
     @NotBlank(message = "{permission.name.not-blank}")
     @Size(max = 50, message = "{permission.name.size}")
-    @Pattern(regexp = "^[A-Za-z ]+$", message = "{permission.name.pattern}")
+    @Pattern(regexp = "^[A-Za-z_ ]+$", message = "{permission.name.pattern}")
     private String name;
 
 

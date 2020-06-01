@@ -19,7 +19,7 @@ import com.rzdp.winestoreapi.mapper.RegisterRequestToUserMapper;
 import com.rzdp.winestoreapi.mapper.UserToUserDtoMapper;
 import com.rzdp.winestoreapi.mapper.UsertoLoginResponseMapper;
 import com.rzdp.winestoreapi.security.JwtProvider;
-import com.rzdp.winestoreapi.service.account.ExistAccountByEmail;
+import com.rzdp.winestoreapi.service.account.ExistsAccountByEmail;
 import com.rzdp.winestoreapi.service.email.EmailService;
 import com.rzdp.winestoreapi.service.role.GetRoleByName;
 import com.rzdp.winestoreapi.service.ssh.SshService;
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     private final GetUserById getUserById;
     private final GetRoleByName getRoleByName;
     private final CreateUser createUser;
-    private final ExistAccountByEmail existAccountByEmail;
+    private final ExistsAccountByEmail existsAccountByEmail;
 
     // Multiple Service
     private final UserImageService userImageService;
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(GetUserById getUserById,
                            GetRoleByName getRoleByName,
                            CreateUser createUser,
-                           ExistAccountByEmail existAccountByEmail,
+                           ExistsAccountByEmail existsAccountByEmail,
                            UserImageService userImageService,
                            SshService sshService,
                            EmailService emailService,
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
         this.getUserById = getUserById;
         this.getRoleByName = getRoleByName;
         this.createUser = createUser;
-        this.existAccountByEmail = existAccountByEmail;
+        this.existsAccountByEmail = existsAccountByEmail;
         this.userImageService = userImageService;
         this.sshService = sshService;
         this.emailService = emailService;
@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
         // Validate username
         String email = request.getEmail();
 
-        if (existAccountByEmail.run(email)) {
+        if (existsAccountByEmail.run(email)) {
             throw new AccountAlreadyExistException(messageProperties
                     .getException().getAccount().getAlreadyExist());
         }

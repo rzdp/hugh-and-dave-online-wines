@@ -2,6 +2,8 @@ package com.rzdp.winestoreapi.entity;
 
 
 import com.rzdp.winestoreapi.entity.base.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,7 +31,9 @@ import java.util.List;
 @Entity
 @Table(name = "[User]")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 @EqualsAndHashCode(callSuper = true)
 public class User extends BaseEntity {
 

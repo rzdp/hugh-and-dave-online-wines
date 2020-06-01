@@ -12,6 +12,11 @@ import {SignupComponent} from './auth/signup/signup.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
     path: 'sign-in',
     component: SigninComponent
   },
@@ -20,13 +25,20 @@ const routes: Routes = [
     component: SignupComponent
   },
   {
-    path: '', component: MainComponent,
-    children: [
-      {path: 'home', component: HomeComponent},
-      {path: 'shop', component: ShopComponent},
-      {path: 'shopping-cart', component: ShoppingCartComponent},
-      {path: 'checkout', component: CheckoutComponent},
-    ]
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'shop',
+    component: ShopComponent
+  },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent
+  },
+  {
+    path: 'checkout', 
+    component: CheckoutComponent
   },
   {
     path: '**',

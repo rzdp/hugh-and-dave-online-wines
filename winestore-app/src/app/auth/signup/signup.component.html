@@ -1,124 +1,145 @@
 <div class="signup">
-
-  <!-- BACKGROUND -->
-  <div class="signup__background">
+  <!-- HEADING -->
+  <h2 class="heading-secondary text-highlight text-semibold">Create your account!</h2>
+  
+  <!-- PERSONAL INFORMATION -->
+  <div class="row">
+    <div class="col-1-of-2">
+      <div class="signup__signup-form">
+        <div class="signup__signup-form-header">
+          <h3 class="heading-tertiary text-semibold">Personal Information</h3>
+        </div>
+        <div class="signup__form-container">
+            <div class="form__group">
+              <label class="form__label" for="title">Title*</label>
+              <select class="form__input" id="title" name="title">
+                <option value="">Select Title</option>
+                <option value="MR">Mr.</option>
+                <option value="MS">Ms.</option>
+                <option value="MRS">Mrs.</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="firstName">First name*</label>
+              <input class="form__input" id="firstName" name="firstName" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="middleName">Middle name</label>
+              <input class="form__input" id="middleName" name="middleName" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="lastName">Last name*</label>
+              <input class="form__input" id="lastName" name="lastName" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="suffix">Suffix</label>
+              <input class="form__input" id="suffix" name="suffix" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="birthDate">Date of birth*</label>
+              <input class="form__input" id="birthDate" name="birthDate" type="date">
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+    
+  
+  <!-- ADDRRESS INFORMATION -->
+  <div class="row">
+    <div class="col-1-of-2">
+      <div class="signup__signup-form">
+        <div class="signup__signup-form-header">
+          <h3 class="heading-tertiary text-semibold">Address Information</h3>
+        </div>
+        <div class="signup__form-container">
+            <div class="form__group">
+              <label class="form__label" for="line1">Line 1*</label>
+              <input class="form__input" id="line1" name="line1" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="line2">Line 2</label>
+              <input class="form__input" id="line2" name="line2" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="line3">Line 3</label>
+              <input class="form__input" id="line3" name="line3" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="city">City*</label>
+              <input class="form__input" id="city" name="city" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="state">State*</label>
+              <input class="form__input" id="state" name="state" type="text">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="country">Country*</label>
+              <select class="form__input" id="country" name="country">
+                <option value="">Select Country</option>
+                <option value="PHILIPPINES">Philippines</option>
+                <option value="SOUTH KOREA">South Korea</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="postal">Postal*</label>
+              <input class="form__input" id="postal" name="postal" type="text">
+            </div>
+          </div>
+      </div>
+    </div>
   </div>
 
-  <!-- REGISTRATION FORM -->
-  <div class="signup__form-container">
-    <form class="signup__form">
+  <!-- CONTACT INFORMATION -->
+  <div class="row">
+    <div class="col-1-of-2">
+      <div class="signup__signup-form">
+        <div class="signup__signup-form-header">
+          <h3 class="heading-tertiary text-semibold">Contact Information</h3>
+        </div>
+        <div class="signup__form-container">
+          <div class="form__group">
+            <label class="form__label" for="mobile">Mobile*</label>
+            <input class="form__input" id="mobile" name="mobile" type="text">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="tel">Tel No.</label>
+            <input class="form__input" id="tel" name="tel" type="text">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="fax">Fax No.</label>
+            <input class="form__input" id="fax" name="fax" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <!-- HEADING -->
-      <h2 class="heading-secondary text-highlight">Create your account</h2>
-      <p class="text-normal margin-bottom-xlarge">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolorum
-        aspernatur numquam</p>
 
-      <!-- PERSONAL INFORMATION -->
-      <div class="signup__header">
-        <h2 class="heading-tertiary">Personal Information</h2>
+  <!-- ACCOUNT INFORMATION -->
+  <div class="row">
+    <div class="col-1-of-2">
+      <div class="signup__signup-form">
+        <div class="signup__signup-form-header">
+          <h3 class="heading-tertiary text-semibold">Account Information</h3>
+        </div>
+        <div class="signup__form-container">
+          <div class="form__group">
+            <label class="form__label" for="email">Email Address*</label>
+            <input class="form__input" id="email" name="email" type="email">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="password">Password*</label>
+            <input class="form__input" id="password" name="password" type="password">
+          </div>
+        </div>
       </div>
-      <div class="form__group">
-        <label class="form__label" for="title">Title*</label>
-        <select class="form__input" id="title" name="title">
-          <option value="">Select Title</option>
-          <option value="MR">Mr.</option>
-          <option value="MS">Ms.</option>
-          <option value="MRS">Mrs.</option>
-        </select>
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="firstName">First name*</label>
-        <input class="form__input" id="firstName" name="firstName" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="middleName">Middle name</label>
-        <input class="form__input" id="middleName" name="middleName" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="lastName">Last name*</label>
-        <input class="form__input" id="lastName" name="lastName" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="suffix">Suffix</label>
-        <input class="form__input" id="suffix" name="suffix" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="birthDate">Date of birth</label>
-        <input class="form__input" id="birthDate" name="birthDate" type="date">
-      </div>
-
-      <!-- ADDRESS INFORMATION -->
-      <div class="signup__header">
-        <h2 class="heading-tertiary">Address Information</h2>
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="line1">Line 1*</label>
-        <input class="form__input" id="line1" name="line1" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="line2">Line 2</label>
-        <input class="form__input" id="line2" name="line2" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="line3">Line 3</label>
-        <input class="form__input" id="line3" name="line3" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="city">City*</label>
-        <input class="form__input" id="city" name="city" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="state">State</label>
-        <input class="form__input" id="state" name="state" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="country">Country*</label>
-        <select class="form__input" id="country" name="country">
-          <option value="">Select Country</option>
-          <option value="PHILIPPINES">Philippines</option>
-          <option value="SOUTH KOREA">South Korea</option>
-        </select>
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="postal">Postal*</label>
-        <input class="form__input" id="postal" name="postal" type="text">
-      </div>
-
-      <!-- CONTACT INFORMATION -->
-      <div class="signup__header">
-        <h2 class="heading-tertiary">Contact Information</h2>
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="mobile">Mobile*</label>
-        <input class="form__input" id="mobile" name="mobile" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="tel">Tel No.</label>
-        <input class="form__input" id="tel" name="tel" type="text">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="fax">Fax No.</label>
-        <input class="form__input" id="fax" name="fax" type="text">
-      </div>
-
-      <!-- ACCOUNT INFORMATION -->
-      <div class="signup__header">
-        <h2 class="heading-tertiary">Account Information</h2>
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="email">Email Address</label>
-        <input class="form__input" id="email" name="email" type="email">
-      </div>
-      <div class="form__group">
-        <label class="form__label" for="password">Password</label>
-        <input class="form__input" id="password" name="password" type="password">
-      </div>
-
-      <!-- ACTION BUTTONS  -->
-      <div class="form__group signup__action">
-        <button class="btn btn-primary">Submit</button>
-        <button class="btn">Cancel</button>
-      </div>
-    </form>
+    </div>
+  </div>
+            
+  <!-- ACTION BUTTONS  -->
+  <div class="form__group signup__action">
+    <button class="btn btn-primary">Submit</button>
+    <button class="btn">Cancel</button>
   </div>
 </div>

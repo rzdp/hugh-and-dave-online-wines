@@ -1,6 +1,8 @@
 package com.rzdp.winestoreapi.entity;
 
 import com.rzdp.winestoreapi.entity.base.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -25,7 +27,9 @@ import static javax.persistence.CascadeType.REFRESH;
 @Entity
 @Table(name = "UserImage")
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class UserImage extends BaseEntity {
 

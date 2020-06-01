@@ -1,6 +1,8 @@
 package com.rzdp.winestoreapi.entity;
 
 import com.rzdp.winestoreapi.entity.base.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,9 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "[Address]")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 @EqualsAndHashCode(callSuper = true)
 public class Address extends BaseEntity {
 
