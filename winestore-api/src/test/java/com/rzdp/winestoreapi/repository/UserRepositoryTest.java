@@ -6,7 +6,9 @@ import com.rzdp.winestoreapi.entity.Contact;
 import com.rzdp.winestoreapi.entity.User;
 import com.rzdp.winestoreapi.util.TestUtil;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
@@ -20,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @DataJpaTest
 @DisplayName("User Repository Tests")
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 class UserRepositoryTest {
 
     @Autowired

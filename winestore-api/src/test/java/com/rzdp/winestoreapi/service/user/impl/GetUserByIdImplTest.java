@@ -1,75 +1,64 @@
 package com.rzdp.winestoreapi.service.user.impl;
 
-import com.rzdp.winestoreapi.config.properties.MessageProperties;
 import com.rzdp.winestoreapi.entity.User;
 import com.rzdp.winestoreapi.exception.DataNotFoundException;
 import com.rzdp.winestoreapi.repository.UserRepository;
-import com.rzdp.winestoreapi.service.user.GetUserById;
 import com.rzdp.winestoreapi.util.TestUtil;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
 @DisplayName("Get User By Id Service Tests")
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 class GetUserByIdImplTest {
 
-    @Autowired
-    private MessageProperties messageProperties;
-
     @InjectMocks
-    @Autowired
     private GetUserByIdImpl getUserById;
-
-    @InjectMocks
-    @Autowired
-    private CreateUserImpl createUser;
 
     @Mock
     private UserRepository userRepositoryMock;
 
     @Test
-    @DisplayName("run() returns user when successful")
-    void run_ReturnsUser_WhenSuccessful() {
+    @DisplayName("run() returns user when user ID is valid")
+    void run_ReturnsUser_WhenUserIdIsValid() {
         // Arrange
-        User user = TestUtil.getUserData();
-        User savedUser = createUser.run(user);
-        long expectedId = savedUser.getUserId();
-        when(userRepositoryMock.findById(expectedId))
-                .thenReturn(Optional.of(savedUser));
+        User expectedUser = TestUtil.getUserData();
+        long userId = expectedUser.getUserId();
+        when(userRepositoryMock.findById(userId))
+                .thenReturn(Optional.of(expectedUser));
 
         // Act
-        User userResult = getUserById.run(expectedId);
+        User user = getUserById.run(userId);
 
         // Assert
-        assertThat(userResult).isNotNull();
-        assertThat(userResult.getUserId()).isNotNull();
-        assertThat(userResult.getUserId()).isEqualTo(expectedId);
+        assertThat(user).isNotNull();
+        assertThat(user).isEqualTo(expectedUser);
+        assertThat(user.getUserId()).isEqualTo(userId);
     }
 
     @Test
-    @DisplayName("run() throws DataNotFoundException when user does not exist")
-    void run_ThrowDatNotFoundException_WhenUserDoesNotExists() {
+    @DisplayName("run() throws DataNotFoundException when user ID is invalid")
+    void run_ThrowsDataNotFoundException_WhenUserIdIsInvalid() {
         // Arrange
-        long invalidUserId = 999999;
-        when(userRepositoryMock.findById(invalidUserId))
-                .thenReturn(Optional.empty());
+        long userId = 9999;
+        when(userRepositoryMock.findById(userId))
+                .thenThrow(DataNotFoundException.class);
 
-        // Act and Assert
+        // Act & Assert
         assertThatExceptionOfType(DataNotFoundException.class)
-                .isThrownBy(() -> getUserById.run(invalidUserId))
-                .withMessage(messageProperties.getException().getDataNotFound().getUser());
-
+                .isThrownBy(() -> getUserById.run(userId));
     }
+
 }

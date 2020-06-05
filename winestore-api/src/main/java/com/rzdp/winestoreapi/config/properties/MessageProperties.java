@@ -28,6 +28,8 @@ public class MessageProperties {
         private AlreadyVerified alreadyVerified;
         private UpdatePhoto updatePhoto;
         private UploadFile uploadFile;
+        private Email email;
+
 
         @Data
         public static class DataNotFound {
@@ -54,6 +56,11 @@ public class MessageProperties {
         @Data
         public static class UploadFile {
             private String ssh;
+        }
+
+        @Data
+        public static class Email {
+            private String userVerification;
         }
     }
 }

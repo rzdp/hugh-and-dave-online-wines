@@ -10,12 +10,10 @@ import javax.validation.constraints.Size;
 public class SignInRequest {
 
     @NotBlank(message = "{account.email.not-blank}")
-    @Size(max = 50, message = "{account.email.size}")
     @Email(message = "{account.email.email}")
     private String username;
 
     @NotBlank(message = "{account.password.not-blank}")
-    @Size(min = 8, max = 128, message = "{account.password.size}")
     private String password;
 
 }

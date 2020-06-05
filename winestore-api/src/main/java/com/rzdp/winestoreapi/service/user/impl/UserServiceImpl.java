@@ -14,6 +14,7 @@ import com.rzdp.winestoreapi.entity.Account;
 import com.rzdp.winestoreapi.entity.User;
 import com.rzdp.winestoreapi.exception.AccountAlreadyExistException;
 import com.rzdp.winestoreapi.exception.AccountAlreadyVerifiedException;
+import com.rzdp.winestoreapi.exception.EmailException;
 import com.rzdp.winestoreapi.exception.UserUpdatePhotoException;
 import com.rzdp.winestoreapi.mapper.RegisterRequestToUserMapper;
 import com.rzdp.winestoreapi.mapper.UserToUserDtoMapper;
@@ -193,9 +194,14 @@ public class UserServiceImpl implements UserService {
         props.put("url", emailProperties.getRegistrationVerification().getUrl() + userId);
         mailDto.setProps(props);
 
-        emailService.sendUserVerificationEmail(mailDto);
-        log.info("User verification email sent!");
+        // Send user verification email
+        boolean success = emailService.sendUserVerificationEmail(mailDto);
+        if (!success) {
+            throw new EmailException(messageProperties.getException()
+                    .getEmail().getUserVerification());
+        }
 
+        log.info("User verification email sent!");
 
         return new MessageResponse(messageProperties.getSuccess().getRegister());
     }

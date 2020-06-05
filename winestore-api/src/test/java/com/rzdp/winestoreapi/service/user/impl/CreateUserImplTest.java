@@ -3,22 +3,21 @@ package com.rzdp.winestoreapi.service.user.impl;
 import com.rzdp.winestoreapi.entity.User;
 import com.rzdp.winestoreapi.repository.UserRepository;
 import com.rzdp.winestoreapi.util.TestUtil;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
 @DisplayName("Create User Service Tests")
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 class CreateUserImplTest {
 
     @InjectMocks
@@ -27,27 +26,20 @@ class CreateUserImplTest {
     @Mock
     private UserRepository userRepositoryMock;
 
-    @BeforeEach
-    void setUp() {
-        when(userRepositoryMock.save(any(User.class)))
-                .thenReturn(TestUtil.getUserData());
-    }
-
-
     @Test
-    @DisplayName("run() creates user when successful")
-    void run_CreatesUser_WhenSuccessful() {
+    @DisplayName("run() returns user when successful")
+    void run_ReturnsUser_WhenSuccessful() {
         // Arrange
         User user = TestUtil.getUserData();
+        when(userRepositoryMock.save(user)).thenReturn(user);
 
         // Act
         User savedUser = createUser.run(user);
 
         // Assert
+        assertThat(savedUser).isNotNull();
         assertThat(savedUser.getUserId()).isNotNull();
-        assertThat(savedUser.getFullName().trim()).isNotEmpty();
         assertThat(savedUser.getFullName()).isEqualTo(user.getFullName());
+        assertThat(savedUser.getAccount()).isEqualTo(user.getAccount());
     }
-
-
 }

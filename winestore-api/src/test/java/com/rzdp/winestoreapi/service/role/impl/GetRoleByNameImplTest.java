@@ -1,68 +1,64 @@
 package com.rzdp.winestoreapi.service.role.impl;
 
-import com.rzdp.winestoreapi.config.properties.MessageProperties;
+import com.rzdp.winestoreapi.constant.UserRole;
 import com.rzdp.winestoreapi.entity.Role;
 import com.rzdp.winestoreapi.exception.DataNotFoundException;
 import com.rzdp.winestoreapi.repository.RoleRepository;
 import com.rzdp.winestoreapi.util.TestUtil;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
 @DisplayName("Get Role By Name Service Tests")
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 class GetRoleByNameImplTest {
 
-    @Autowired
-    private MessageProperties messageProperties;
-
     @InjectMocks
-    @Autowired
     private GetRoleByNameImpl getRoleByName;
 
     @Mock
     private RoleRepository roleRepositoryMock;
 
-
-
     @Test
-    @DisplayName("run() returns role when successful")
-    void run_ReturnRole_WhenSuccessful() {
+    @DisplayName("run() returns role when name is valid")
+    void run_ReturnsRole_WhenNameIsValid() {
         // Arrange
-        Role role = TestUtil.getRoleData();
-        String expectedName = role.getName();
-        when(roleRepositoryMock.findByName(expectedName))
-                .thenReturn(Optional.of(role));
+        String roleName = UserRole.ROLE_USER;
+        Role expectedResult = TestUtil.getRoleData();
+        when(roleRepositoryMock.findByName(roleName))
+                .thenReturn(Optional.of(expectedResult));
 
         // Act
-        Role roleResult = getRoleByName.run(expectedName);
+        Role role = getRoleByName.run(roleName);
 
         // Assert
-        assertThat(roleResult).isNotNull();
-        assertThat(roleResult.getName()).isNotEmpty();
-        assertThat(roleResult.getName()).isEqualTo(expectedName);
+        assertThat(role).isNotNull();
+        assertThat(role).isEqualTo(expectedResult);
+        assertThat(role.getName()).isEqualTo(roleName);
     }
 
     @Test
-    @DisplayName("run() throws DataNotFoundException when role does not exist")
-    void run_ThrowDataNotFoundException_WhenRoleDoesNotExists() {
+    @DisplayName("run() throws data not found exception when name is invalid")
+    void run_ThrowsDataNotFoundException_WhenNameIsInvalid() {
         // Arrange
-        String name = "INVALID_ROLE";
-        when(roleRepositoryMock.findByName(name))
-                .thenReturn(Optional.empty());
+        String roleName = "ROLE_DUMMY";
+        when(roleRepositoryMock.findByName(roleName))
+                .thenThrow(DataNotFoundException.class);
 
-        // Act and Assert
+        // Act & Assert
         assertThatExceptionOfType(DataNotFoundException.class)
-                .isThrownBy(() -> getRoleByName.run(name))
-                .withMessage(messageProperties.getException().getDataNotFound().getRole());
+                .isThrownBy(() -> getRoleByName.run(roleName));
     }
 }

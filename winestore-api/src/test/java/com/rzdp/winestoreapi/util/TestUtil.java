@@ -1,6 +1,8 @@
 package com.rzdp.winestoreapi.util;
 
 import com.rzdp.winestoreapi.constant.UserRole;
+import com.rzdp.winestoreapi.dto.UserDto;
+import com.rzdp.winestoreapi.dto.response.SignInResponse;
 import com.rzdp.winestoreapi.entity.Account;
 import com.rzdp.winestoreapi.entity.Address;
 import com.rzdp.winestoreapi.entity.Contact;
@@ -8,6 +10,9 @@ import com.rzdp.winestoreapi.entity.Permission;
 import com.rzdp.winestoreapi.entity.Role;
 import com.rzdp.winestoreapi.entity.User;
 import com.rzdp.winestoreapi.entity.UserImage;
+import com.rzdp.winestoreapi.mapper.UserToUserDtoMapper;
+import com.rzdp.winestoreapi.mapper.UsertoLoginResponseMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.mock.web.MockMultipartFile;
 
 import java.io.IOException;
@@ -105,5 +110,17 @@ public final class TestUtil {
     public static MockMultipartFile getUserPhoto() throws IOException {
         return new MockMultipartFile("user-photo",
                 "user-photo.jpg", "jpg", "image".getBytes());
+    }
+
+    public static UserDto getUserDto() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.addConverter(new UserToUserDtoMapper());
+        return modelMapper.map(getUserData(), UserDto.class);
+    }
+
+    public static SignInResponse getSignInResponse() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.addConverter(new UsertoLoginResponseMapper());
+        return modelMapper.map(getUserData(), SignInResponse.class);
     }
 }
