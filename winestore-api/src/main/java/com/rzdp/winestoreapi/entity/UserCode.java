@@ -25,25 +25,29 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 @Entity
-@Table(name = "UserImage")
-@Data
-@Builder
+@Table(name = "UserCode")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@Builder
 @EqualsAndHashCode(callSuper = true)
-public class UserImage extends BaseEntity {
+public class UserCode extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "UserImageId")
-    private Long userImageId;
+    @Column(name = "UserCodeId")
+    private Long userCodeId;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {DETACH, MERGE, PERSIST, REFRESH})
     @JoinColumn(name = "UserId")
     public User user;
 
-    @NotBlank(message = "{user-image.image-path.not-blank}")
-    @Size(max = 150, message = "{user-image.image-path.size}")
-    @Column(name = "ImagePath")
-    private String imagePath;
+    @NotBlank(message = "{user-code.code.not-blank}")
+    @Size(min = 6, max = 6, message = "{user-code.code-path.size}")
+    @Column(name = "Code")
+
+    private String code;
+    @Column(name = "Active")
+    private boolean active;
+
 }

@@ -44,7 +44,6 @@ public class User extends BaseEntity {
     private long userId;
 
     @Column(name = "Salutation")
-    @NotBlank(message = "{user.salutation.not-blank}")
     @Size(min = 3, max = 5, message = "{user.salutation.size}")
     @Pattern(regexp = "^(Mrs?|Ms).$", message = "{user.salutation.pattern}")
     private String salutation;
@@ -72,7 +71,6 @@ public class User extends BaseEntity {
 
     @Column(name = "BirthDate")
     @Temporal(TemporalType.DATE)
-    @NotNull(message = "{user.birth-date.not-null}")
     private Date birthDate;
 
     @Column(name = "Active")

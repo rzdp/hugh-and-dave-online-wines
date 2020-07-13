@@ -3,6 +3,12 @@ package com.rzdp.winestoreapi.exception.handler;
 import com.rzdp.winestoreapi.dto.ErrorDto;
 import com.rzdp.winestoreapi.dto.response.ErrorResponse;
 import com.rzdp.winestoreapi.dto.response.ValidationErrorResponse;
+import com.rzdp.winestoreapi.exception.AccountAlreadyExistException;
+import com.rzdp.winestoreapi.exception.AccountAlreadyVerifiedException;
+import com.rzdp.winestoreapi.exception.DataNotFoundException;
+import com.rzdp.winestoreapi.exception.EmailException;
+import com.rzdp.winestoreapi.exception.SshException;
+import com.rzdp.winestoreapi.exception.UserUpdatePhotoException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +61,12 @@ public class AppErrorHandler extends ResponseEntityExceptionHandler {
                 ex.getBindingResult().getFieldErrors());
     }
 
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity<Object> handleGeneralException(Exception ex,
+                                                  WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
     @ExceptionHandler(value = ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex) {
         List<ErrorDto> errors = new ArrayList<>();
@@ -68,6 +80,41 @@ public class AppErrorHandler extends ResponseEntityExceptionHandler {
                 new ValidationErrorResponse(HttpStatus.BAD_REQUEST.value(), "Validation Error!",
                         errors);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = AccountAlreadyExistException.class)
+    public ResponseEntity<Object> handleAccountAlreadyExistException(AccountAlreadyExistException ex,
+                                                                     WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = AccountAlreadyVerifiedException.class)
+    public ResponseEntity<Object> handleAccountAlreadyVerifiedException(AccountAlreadyVerifiedException ex,
+                                                                        WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.BAD_REQUEST, request);
+    }
+
+
+    @ExceptionHandler(value = DataNotFoundException.class)
+    public ResponseEntity<Object> handleDataNotFoundException(DataNotFoundException ex,
+                                                              WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(value = EmailException.class)
+    public ResponseEntity<Object> handleEmailException(EmailException ex, WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler(value = SshException.class)
+    public ResponseEntity<Object> handleSshException(SshException ex, WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler(value = UserUpdatePhotoException.class)
+    public ResponseEntity<Object> handleUserUpdatePhotoException(UserUpdatePhotoException ex,
+                                                                 WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
     private ResponseEntity<Object> buildErrorResponse(Exception ex, HttpStatus status,

@@ -17,7 +17,8 @@ public class MessageProperties {
     @Data
     public static class SuccessMessage {
         private String register;
-        private String verifyUser;
+        private String notifySignUp;
+        private String verifySignUp;
         private String updatePhoto;
     }
 
@@ -28,7 +29,7 @@ public class MessageProperties {
         private AlreadyVerified alreadyVerified;
         private UpdatePhoto updatePhoto;
         private UploadFile uploadFile;
-        private Email email;
+        private UserVerification userVerification;
 
 
         @Data
@@ -59,8 +60,8 @@ public class MessageProperties {
         }
 
         @Data
-        public static class Email {
-            private String userVerification;
+        public static class UserVerification {
+            private String email;
         }
     }
 }

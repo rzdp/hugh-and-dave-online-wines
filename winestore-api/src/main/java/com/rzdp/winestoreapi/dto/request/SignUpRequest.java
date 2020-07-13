@@ -1,37 +1,29 @@
 package com.rzdp.winestoreapi.dto.request;
 
-import com.rzdp.winestoreapi.dto.AddressDto;
-import com.rzdp.winestoreapi.dto.ContactDto;
-import com.rzdp.winestoreapi.dto.NameDto;
 import lombok.Data;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 @Data
 public class SignUpRequest {
 
-    @NotBlank(message = "{user.salutation.not-blank}")
-    @Size(min = 3, max = 5, message = "{user.salutation.size}")
-    @Pattern(regexp = "^(Mrs?|Ms).$", message = "{user.salutation.pattern}")
-    private String salutation;
+    @NotBlank(message = "{user.first-name.not-blank}")
+    @Size(max = 50, message = "{user.first-name.size}")
+        @Pattern(regexp = "^[A-Za-z\\u00f1\\u00d1 ]+$", message = "{user.first-name.pattern}")
+    private String firstName;
 
-    @Valid
-    private NameDto name;
+    @NotBlank(message = "{user.last-name.not-blank}")
+    @Size(max = 50, message = "{user.last-name.size}")
+    @Pattern(regexp = "^[A-Za-z\\u00f1\\u00d1 ]+$", message = "{user.last-name.pattern}")
+    private String lastName;
 
-    @NotNull(message = "{user.birth-date.not-null}")
-    private Date birthDate;
-
-    @Valid
-    private AddressDto address;
-
-    @Valid
-    private ContactDto contact;
+    @NotBlank(message = "{contact.mobile.not-blank}")
+    @Size(min = 10, max = 10, message = "{contact.mobile.size}")
+    @Pattern(regexp = "^[0-9]*$", message = "{contact.mobile.pattern}")
+    private String mobile;
 
     @NotBlank(message = "{account.email.not-blank}")
     @Size(max = 50, message = "{account.email.size}")
@@ -41,4 +33,5 @@ public class SignUpRequest {
     @NotBlank(message = "{account.password.not-blank}")
     @Size(min = 8, max = 128, message = "{account.password.size}")
     private String password;
+
 }

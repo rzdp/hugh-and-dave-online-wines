@@ -37,8 +37,14 @@ public class AuthController {
         return new ResponseEntity<>(userService.signUp(request), HttpStatus.OK);
     }
 
-    @PostMapping("/v1/sign-up/{userId}/verification")
-    public ResponseEntity<MessageResponse> verifySignUp(@Valid @PathVariable long userId) {
-        return new ResponseEntity<>(userService.verifySignUp(userId), HttpStatus.OK);
+    @PostMapping("/v1/sign-up/{userId}/notification")
+    public ResponseEntity<MessageResponse> notifySignUp(@Valid @PathVariable long userId) {
+        return new ResponseEntity<>(userService.notifySignUp(userId), HttpStatus.OK);
     }
+
+    @PostMapping("/v1/sign-up/{userId}/confirmation")
+    public ResponseEntity<MessageResponse> confirmSignUp(@Valid @PathVariable long userId) {
+        return new ResponseEntity<>(userService.confirmSignUp(userId), HttpStatus.OK);
+    }
+
 }

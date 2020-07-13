@@ -1,0 +1,25 @@
+@import "../../../styles/abstracts/variables";
+
+.signup-verification {
+  padding: 0 7.5rem;
+
+  &__signup-verification-form {
+    min-height: 30vh;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__signup-verification-form-header {
+    border-bottom: 1px solid $white-color-dark;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__form-container {
+    background-color: $white-color;
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+
+
+}

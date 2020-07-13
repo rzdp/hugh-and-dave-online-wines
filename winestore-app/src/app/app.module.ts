@@ -18,6 +18,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {SigninComponent} from './auth/signin/signin.component';
 import {MainComponent} from './main/main.component';
 import {SignupComponent} from './auth/signup/signup.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AuthService} from './service/auth.service';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SignupVerificationComponent } from './auth/signup-verification/signup-verification.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +42,26 @@ import {SignupComponent} from './auth/signup/signup.component';
     SigninComponent,
     MainComponent,
     SignupComponent,
+    SignupVerificationComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    NgxPaginationModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    ToastrModule.forRoot({
+      maxOpened: 7,
+      timeOut: 3000,
+      closeButton: true,
+      tapToDismiss: false,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+    })
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

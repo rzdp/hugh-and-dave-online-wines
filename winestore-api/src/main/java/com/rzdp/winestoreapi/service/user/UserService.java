@@ -15,7 +15,10 @@ public interface UserService {
 
     MessageResponse signUp(SignUpRequest request);
 
-    MessageResponse verifySignUp(long userId);
+    MessageResponse notifySignUp(long userId);
+
+    MessageResponse confirmSignUp(long userId);
 
     MessageResponse updateUserPhoto(long userId, MultipartFile file);
+
 }

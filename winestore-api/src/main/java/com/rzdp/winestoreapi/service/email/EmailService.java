@@ -1,8 +1,8 @@
 package com.rzdp.winestoreapi.service.email;
 
-import com.rzdp.winestoreapi.dto.MailDto;
+import com.rzdp.winestoreapi.entity.User;
 
 public interface EmailService {
 
-    boolean sendUserVerificationEmail(MailDto mailDto);
+    void sendUserVerificationEmail(User user, String email);
 }

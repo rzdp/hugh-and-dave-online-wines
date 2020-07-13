@@ -10,6 +10,7 @@ import com.rzdp.winestoreapi.dto.request.SignInRequest;
 import com.rzdp.winestoreapi.dto.request.SignUpRequest;
 import com.rzdp.winestoreapi.dto.response.MessageResponse;
 import com.rzdp.winestoreapi.dto.response.SignInResponse;
+import com.rzdp.winestoreapi.dto.response.SignUpResponse;
 import com.rzdp.winestoreapi.entity.Account;
 import com.rzdp.winestoreapi.entity.User;
 import com.rzdp.winestoreapi.exception.AccountAlreadyExistException;
@@ -158,7 +159,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public MessageResponse signUp(SignUpRequest request) {
-
         // Validate username
         String email = request.getEmail();
 
@@ -180,35 +180,45 @@ public class UserServiceImpl implements UserService {
 
         // Save the user
         createUser.run(user);
-        log.info("User {} created successfully", user.getFullName());
+        log.info("User {} created successfully", user.getFirstName());
         long userId = user.getUserId();
 
-        log.info("Sending user verification via email to user");
-        MailDto mailDto = new MailDto();
-        mailDto.setSender(emailProperties.getSender());
-        mailDto.setSubject(emailProperties.getRegistrationVerification().getSubject());
-        mailDto.setReceiver(account.getEmail());
-
-        Map<String, Object> props = new HashMap<>();
-        props.put("firstName", user.getFirstName());
-        props.put("url", emailProperties.getRegistrationVerification().getUrl() + userId);
-        mailDto.setProps(props);
-
         // Send user verification email
-        boolean success = emailService.sendUserVerificationEmail(mailDto);
-        if (!success) {
-            throw new EmailException(messageProperties.getException()
-                    .getEmail().getUserVerification());
-        }
+        log.info("Sending user verification via email to user");
+        emailService.sendUserVerificationEmail(user, email);
 
-        log.info("User verification email sent!");
+        // Return response
+        SignUpResponse response = new SignUpResponse(userId, user.getFirstName(),
+                user.getLastName(), email);
 
-        return new MessageResponse(messageProperties.getSuccess().getRegister());
+        return new MessageResponse(messageProperties.getSuccess().getRegister(), response);
     }
 
     @Override
     @Transactional
-    public MessageResponse verifySignUp(long userId) {
+    public MessageResponse notifySignUp(long userId) {
+        // Get user
+        User user = getUserById.run(userId);
+        Account account = user.getAccount();
+        if (user.isActive() || account.isVerified()) {
+            throw new AccountAlreadyVerifiedException(messageProperties
+                    .getException().getAlreadyVerified().getAccount());
+        }
+        String email = account.getEmail();
+
+        // Send user verification email
+        emailService.sendUserVerificationEmail(user, email);
+
+        // Return response
+        SignUpResponse response = new SignUpResponse(userId, user.getFirstName(),
+                user.getLastName(), email);
+        return new MessageResponse(messageProperties.getSuccess().getNotifySignUp(), response);
+    }
+
+    @Override
+    @Transactional
+    public MessageResponse confirmSignUp(long userId) {
+        // Get user
         log.info("Verifying user account with id {}", userId);
         User user = getUserById.run(userId);
         Account account = user.getAccount();
@@ -221,7 +231,7 @@ public class UserServiceImpl implements UserService {
         user.setAccount(account);
         createUser.run(user);
         log.info("User account of {} verified successfully!", user.getFullName());
-        return new MessageResponse(messageProperties.getSuccess().getVerifyUser());
+        return new MessageResponse(messageProperties.getSuccess().getVerifySignUp());
     }
 
     @Override
@@ -272,4 +282,5 @@ public class UserServiceImpl implements UserService {
 
         return new MessageResponse(messageProperties.getSuccess().getUpdatePhoto());
     }
+
 }

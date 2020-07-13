@@ -6,8 +6,8 @@ import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 import {CheckoutComponent} from './checkout/checkout.component';
 import {ShopComponent} from './shop/shop.component';
 import {SigninComponent} from './auth/signin/signin.component';
-import {MainComponent} from './main/main.component';
 import {SignupComponent} from './auth/signup/signup.component';
+import {SignupVerificationComponent} from './auth/signup-verification/signup-verification.component';
 
 
 const routes: Routes = [
@@ -25,6 +25,10 @@ const routes: Routes = [
     component: SignupComponent
   },
   {
+    path: 'sign-up/:id/verification',
+    component: SignupVerificationComponent
+  },
+  {
     path: 'home',
     component: HomeComponent
   },
@@ -37,7 +41,7 @@ const routes: Routes = [
     component: ShoppingCartComponent
   },
   {
-    path: 'checkout', 
+    path: 'checkout',
     component: CheckoutComponent
   },
   {

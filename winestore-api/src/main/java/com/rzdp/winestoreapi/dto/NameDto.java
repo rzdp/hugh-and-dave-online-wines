@@ -21,6 +21,7 @@ public class NameDto {
 
     @Size(max = 50, message = "{user.middle-name.size}")
     @Pattern(regexp = "^[A-Za-z\\u00f1\\u00d1 ]+$", message = "{user.middle-name.pattern}")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String middle;
 
     @NotBlank(message = "{user.last-name.not-blank}")

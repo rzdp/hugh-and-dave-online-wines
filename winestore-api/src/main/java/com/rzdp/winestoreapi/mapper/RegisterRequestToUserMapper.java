@@ -16,23 +16,9 @@ public class RegisterRequestToUserMapper extends AbstractConverter<SignUpRequest
     @Override
     protected User convert(SignUpRequest request) {
 
-        // Map Address
-        AddressDto addressDto = request.getAddress();
-        Address address = new Address();
-        address.setLine1(addressDto.getLine1());
-        address.setLine2(addressDto.getLine2());
-        address.setLine3(addressDto.getLine3());
-        address.setCity(addressDto.getCity());
-        address.setState(addressDto.getState());
-        address.setCountry(addressDto.getCountry());
-        address.setPostal(addressDto.getPostal());
-
         // Map Contact
-        ContactDto contactDto = request.getContact();
         Contact contact = new Contact();
-        contact.setMobile(contactDto.getMobile());
-        contact.setTel(contactDto.getTel());
-        contact.setFax(contactDto.getFax());
+        contact.setMobile(request.getMobile());
 
         // Map Account
         Account account = new Account();
@@ -41,15 +27,9 @@ public class RegisterRequestToUserMapper extends AbstractConverter<SignUpRequest
         account.setVerified(false);
 
         // Map User
-        NameDto name = request.getName();
         User user = new User();
-        user.setSalutation(request.getSalutation());
-        user.setFirstName(name.getFirst());
-        user.setMiddleName(name.getMiddle());
-        user.setLastName(name.getLast());
-        user.setSuffix(name.getSuffix());
-        user.setBirthDate(request.getBirthDate());
-        user.setAddress(address);
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
         user.setContact(contact);
         user.setAccount(account);
         return user;

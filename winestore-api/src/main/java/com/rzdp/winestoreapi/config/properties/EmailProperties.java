@@ -15,6 +15,5 @@ public class EmailProperties {
     @Data
     public static class RegistrationVerification {
         private String subject;
-        private String url;
     }
 }

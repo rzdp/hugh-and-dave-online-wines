@@ -41,12 +41,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static com.rzdp.winestoreapi.config.properties.MessageProperties.ExceptionMessage;
 import static com.rzdp.winestoreapi.config.properties.MessageProperties.ExceptionMessage.AlreadyExist;
 import static com.rzdp.winestoreapi.config.properties.MessageProperties.ExceptionMessage.AlreadyVerified;
-import static com.rzdp.winestoreapi.config.properties.MessageProperties.ExceptionMessage.Email;
+import static com.rzdp.winestoreapi.config.properties.MessageProperties.ExceptionMessage.UserVerification;
 import static com.rzdp.winestoreapi.config.properties.MessageProperties.SuccessMessage;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -104,7 +105,7 @@ class UserServiceImplTest {
     private ExceptionMessage exceptionMessagePropertiesMock;
 
     @Mock
-    private Email emailMessagePropertiesMock;
+    private UserVerification userVerificationMessagePropertiesMock;
 
     @Mock
     private AlreadyExist alreadyExistMessagePropertiesMock;
@@ -247,11 +248,7 @@ class UserServiceImplTest {
         when(registrationVerificationMock.getSubject())
                 .thenReturn("Hugh and Dave Online Wines - Verify Your Account");
 
-        when(registrationVerificationMock.getUrl())
-                .thenReturn("http://localhost:4200/sign-up/verification?userId=" + user.getUserId());
-
-        when(emailServiceMock.sendUserVerificationEmail(any(MailDto.class)))
-                .thenReturn(true);
+        doNothing().when(emailServiceMock).sendUserVerificationEmail(any(User.class), anyString());
 
         // Arrange - Return response
         when(messagePropertiesMock.getSuccess())
@@ -338,11 +335,7 @@ class UserServiceImplTest {
         when(registrationVerificationMock.getSubject())
                 .thenReturn("Hugh and Dave Online Wines - Verify Your Account");
 
-        when(registrationVerificationMock.getUrl())
-                .thenReturn("http://localhost:4200/sign-up/verification?userId=" + user.getUserId());
-
-        when(emailServiceMock.sendUserVerificationEmail(any(MailDto.class)))
-                .thenReturn(true);
+        doNothing().when(emailServiceMock).sendUserVerificationEmail(any(User.class), anyString());
 
         // Arrange - Return response
         when(messagePropertiesMock.getSuccess())
@@ -403,19 +396,15 @@ class UserServiceImplTest {
         when(registrationVerificationMock.getSubject())
                 .thenReturn("Hugh and Dave Online Wines - Verify Your Account");
 
-        when(registrationVerificationMock.getUrl())
-                .thenReturn("http://localhost:4200/sign-up/verification?userId=" + user.getUserId());
-
-        when(emailServiceMock.sendUserVerificationEmail(any(MailDto.class)))
-                .thenReturn(true);
+        doNothing().when(emailServiceMock).sendUserVerificationEmail(any(User.class), anyString());
 
         when(messagePropertiesMock.getException())
                 .thenReturn(exceptionMessagePropertiesMock);
 
-        when(exceptionMessagePropertiesMock.getEmail())
-                .thenReturn(emailMessagePropertiesMock);
+        when(exceptionMessagePropertiesMock.getUserVerification())
+                .thenReturn(userVerificationMessagePropertiesMock);
 
-        when(emailMessagePropertiesMock.getUserVerification())
+        when(userVerificationMessagePropertiesMock.getEmail())
                 .thenReturn("Unable to send user verification email");
 
         // Arrange - Return response
@@ -477,11 +466,7 @@ class UserServiceImplTest {
         when(registrationVerificationMock.getSubject())
                 .thenReturn("Hugh and Dave Online Wines - Verify Your Account");
 
-        when(registrationVerificationMock.getUrl())
-                .thenReturn("http://localhost:4200/sign-up/verification?userId=" + user.getUserId());
-
-        when(emailServiceMock.sendUserVerificationEmail(any(MailDto.class)))
-                .thenReturn(true);
+        doNothing().when(emailServiceMock).sendUserVerificationEmail(any(User.class), anyString());
 
         // Arrange - Return response
         when(messagePropertiesMock.getSuccess())
@@ -499,69 +484,8 @@ class UserServiceImplTest {
 
 
     @Test
-    @DisplayName("signUp() throws EmailException when email was not sent")
-    void signUp_ThrowsEmailException_WhenEmailWasNotSent() {
-        // Arrange - Create request
-        SignUpRequest request = new SignUpRequest();
-        String email = request.getEmail();
-
-        // Arrange - Validate username
-        when(existsAccountByEmailMock.run(email))
-                .thenReturn(false);
-
-        // Arrange - Map request to user entity
-        User user = TestUtil.getUserData();
-        when(modelMapperMock.map(request, User.class))
-                .thenReturn(user);
-
-        // Arrange - Hash password
-        Account account = user.getAccount();
-        String hashedPassword = "asdjoaijeioqj23lkadm#cxvcxv";
-        when(passwordEncoderMock.encode(account.getPassword()))
-                .thenReturn(hashedPassword);
-
-        // Arrange - Assign user role
-        String role = UserRole.ROLE_USER;
-        Role expectedRole = account.getRole();
-        when(getRoleByNameMock.run(role))
-                .thenReturn(expectedRole);
-
-        // Arrange - Save the user
-        when(createUserMock.run(user))
-                .thenReturn(user);
-
-        // Arrange - Send user verification email
-        when(emailPropertiesMock.getSender())
-                .thenReturn("no-reply@hughanddave.com");
-        when(emailPropertiesMock.getRegistrationVerification())
-                .thenReturn(registrationVerificationMock);
-        when(registrationVerificationMock.getSubject())
-                .thenReturn("Hugh and Dave Online Wines - Verify Your Account");
-        when(registrationVerificationMock.getUrl())
-                .thenReturn("http://localhost:4200/sign-up/verification?userId=" + user.getUserId());
-
-        boolean expectedResult = false;
-        when(emailServiceMock.sendUserVerificationEmail(any(MailDto.class)))
-                .thenReturn(expectedResult);
-
-        when(messagePropertiesMock.getException())
-                .thenReturn(exceptionMessagePropertiesMock);
-
-        when(exceptionMessagePropertiesMock.getEmail())
-                .thenReturn(emailMessagePropertiesMock);
-
-        when(emailMessagePropertiesMock.getUserVerification())
-                .thenReturn("Unable to send user verification email");
-
-        // Act & Assert
-        assertThatExceptionOfType(EmailException.class)
-                .isThrownBy(() -> userService.signUp(request));
-    }
-
-
-    @Test
-    @DisplayName("verifySignUp() returns MessageResponse when successful")
-    void verifySignUp_ReturnsMessageResponse_WhenSuccessful() {
+    @DisplayName("confirmSignUp() returns MessageResponse when successful")
+    void confirmSignUp_ReturnsMessageResponse_WhenSuccessful() {
         User user = TestUtil.getUserData();
         long userId = user.getUserId();
         user.setActive(false);
@@ -577,12 +501,12 @@ class UserServiceImplTest {
                 .thenReturn(successMessagePropertiesMock);
 
         String expectedMessage = "User verified successfully";
-        when(successMessagePropertiesMock.getVerifyUser())
+        when(successMessagePropertiesMock.getVerifySignUp())
                 .thenReturn(expectedMessage);
 
 
         // Act & Assert
-        MessageResponse response = userService.verifySignUp(userId);
+        MessageResponse response = userService.confirmSignUp(userId);
 
         assertThat(response).isNotNull();
         assertThat(response).isInstanceOf(MessageResponse.class);
@@ -590,8 +514,8 @@ class UserServiceImplTest {
     }
 
     @Test
-    @DisplayName("verifySignUp() throws AlreadyVerifiedException when email is active or verified")
-    void verifySignUp_ThrowsAlreadyVerifiedException_WhenEmailIsActiveOrVerified() {
+    @DisplayName("confirmSignUp() throws AlreadyVerifiedException when email is active or verified")
+    void confirmSignUp_ThrowsAlreadyVerifiedException_WhenEmailIsActiveOrVerified() {
         User user = TestUtil.getUserData();
         long userId = user.getUserId();
 
@@ -612,7 +536,7 @@ class UserServiceImplTest {
 
         // Act & Assert
         assertThatExceptionOfType(AccountAlreadyVerifiedException.class)
-                .isThrownBy(() -> userService.verifySignUp(userId));
+                .isThrownBy(() -> userService.confirmSignUp(userId));
     }
 
 }

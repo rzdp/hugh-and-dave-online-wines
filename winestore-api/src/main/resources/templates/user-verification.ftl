@@ -17,15 +17,18 @@
     <p class="text-paragraph margin-bottom-20"
        style="margin: 0;padding: 0;color: #888888;margin-bottom: 20px;">You're
         almost ready to start enjoying Hugh & Dave Wine Store! <br style="margin: 0;padding: 0;">
-        Click the big button
-        below to verify your email address.</p>
+        Here is your confirmation code for your registration.</p>
 
-    <a class="button" href="${url}"
-       style="margin: 0;padding: 15px 10px;background-color: #b83253;color: #ffffff;outline: 0;text-align: center;border-radius: 5px;cursor: pointer;text-decoration: none;margin-bottom: 20px;display: block;width: 200px;">Verify
-        Email Address</a>
+    <p class="button"
+       style="margin: 0;padding: 5px;font-size:30px; font-weight: bold; background-color: #b83253;color: #ffffff;outline: 0;text-align: center;border-radius: 5px;margin-bottom: 20px;display: block;width: 150px;">${code}
+    </p>
     <p class="text-paragraph margin-bottom-20"
-       style="margin: 0;padding: 0;color: #888888;margin-bottom: 20px;">If you
-        didn't initiate this request, you can ignore this email message</p>
+       style="margin: 0;padding: 0;color: #888888;margin-bottom: 20px;">
+        All you have to do is copy the confirmation code and paste it to your form to complete the email verification
+        process.
+        <br>
+        If you didn't initiate this request, you can ignore this email message
+    </p>
     <p class="text-greeting"
        style="margin: 0;padding: 0;font-weight: 600;font-size: 18px;margin-bottom: 15px;">All the
         best, <br style="margin: 0;padding: 0;"> Hugh & Dave Online Wines</p>
