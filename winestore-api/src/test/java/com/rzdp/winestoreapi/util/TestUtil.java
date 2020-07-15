@@ -9,6 +9,7 @@ import com.rzdp.winestoreapi.entity.Contact;
 import com.rzdp.winestoreapi.entity.Permission;
 import com.rzdp.winestoreapi.entity.Role;
 import com.rzdp.winestoreapi.entity.User;
+import com.rzdp.winestoreapi.entity.UserCode;
 import com.rzdp.winestoreapi.entity.UserImage;
 import com.rzdp.winestoreapi.mapper.UserToUserDtoMapper;
 import com.rzdp.winestoreapi.mapper.UsertoLoginResponseMapper;
@@ -16,6 +17,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.mock.web.MockMultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -66,6 +68,18 @@ public final class TestUtil {
                 .imagePath("/WINESTORE/USERS/IMAGES/LA_USR_000001_1000X1000.jpg")
                 .build();
 
+        UserCode activeUserCode = UserCode.builder()
+                .userCodeId((long) 1)
+                .code("111111")
+                .active(true)
+                .build();
+
+        UserCode inactiveUserCode = UserCode.builder()
+                .userCodeId((long) 2)
+                .code("000000")
+                .active(false)
+                .build();
+
         User user = User.builder()
                 .userId((long) 1)
                 .salutation("Mr.")
@@ -78,6 +92,7 @@ public final class TestUtil {
                 .address(address)
                 .contact(contact)
                 .account(account)
+                .userCodes(Arrays.asList(activeUserCode, inactiveUserCode))
                 .userImages(Arrays.asList(smallUserImage, mediumUserImage, largeUserImage))
                 .build();
 
@@ -106,6 +121,7 @@ public final class TestUtil {
 
         return Arrays.asList(permission1, permission2);
     }
+
 
     public static MockMultipartFile getUserPhoto() throws IOException {
         return new MockMultipartFile("user-photo",

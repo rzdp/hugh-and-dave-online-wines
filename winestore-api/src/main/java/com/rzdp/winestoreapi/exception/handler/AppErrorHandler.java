@@ -5,6 +5,7 @@ import com.rzdp.winestoreapi.dto.response.ErrorResponse;
 import com.rzdp.winestoreapi.dto.response.ValidationErrorResponse;
 import com.rzdp.winestoreapi.exception.AccountAlreadyExistException;
 import com.rzdp.winestoreapi.exception.AccountAlreadyVerifiedException;
+import com.rzdp.winestoreapi.exception.ConfirmSignUpException;
 import com.rzdp.winestoreapi.exception.DataNotFoundException;
 import com.rzdp.winestoreapi.exception.EmailException;
 import com.rzdp.winestoreapi.exception.SshException;
@@ -93,6 +94,14 @@ public class AppErrorHandler extends ResponseEntityExceptionHandler {
                                                                         WebRequest request) {
         return buildErrorResponse(ex, HttpStatus.BAD_REQUEST, request);
     }
+
+
+    @ExceptionHandler(value = ConfirmSignUpException.class)
+    public ResponseEntity<Object> handleConfirmSignUpException(ConfirmSignUpException ex,
+                                                                        WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.BAD_REQUEST, request);
+    }
+
 
 
     @ExceptionHandler(value = DataNotFoundException.class)

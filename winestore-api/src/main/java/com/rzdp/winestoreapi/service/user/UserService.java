@@ -1,6 +1,7 @@
 package com.rzdp.winestoreapi.service.user;
 
 import com.rzdp.winestoreapi.dto.UserDto;
+import com.rzdp.winestoreapi.dto.request.ConfirmSignUpRequest;
 import com.rzdp.winestoreapi.dto.request.SignInRequest;
 import com.rzdp.winestoreapi.dto.request.SignUpRequest;
 import com.rzdp.winestoreapi.dto.response.MessageResponse;
@@ -17,7 +18,7 @@ public interface UserService {
 
     MessageResponse notifySignUp(long userId);
 
-    MessageResponse confirmSignUp(long userId);
+    MessageResponse confirmSignUp(long userId, ConfirmSignUpRequest request);
 
     MessageResponse updateUserPhoto(long userId, MultipartFile file);
 

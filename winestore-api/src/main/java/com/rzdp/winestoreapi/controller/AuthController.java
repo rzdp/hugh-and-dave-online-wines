@@ -1,5 +1,6 @@
 package com.rzdp.winestoreapi.controller;
 
+import com.rzdp.winestoreapi.dto.request.ConfirmSignUpRequest;
 import com.rzdp.winestoreapi.dto.request.SignInRequest;
 import com.rzdp.winestoreapi.dto.request.SignUpRequest;
 import com.rzdp.winestoreapi.dto.response.MessageResponse;
@@ -43,8 +44,9 @@ public class AuthController {
     }
 
     @PostMapping("/v1/sign-up/{userId}/confirmation")
-    public ResponseEntity<MessageResponse> confirmSignUp(@Valid @PathVariable long userId) {
-        return new ResponseEntity<>(userService.confirmSignUp(userId), HttpStatus.OK);
+    public ResponseEntity<MessageResponse> confirmSignUp(@Valid @PathVariable long userId,
+                                                         @RequestBody ConfirmSignUpRequest request) {
+        return new ResponseEntity<>(userService.confirmSignUp(userId, request), HttpStatus.OK);
     }
 
 }

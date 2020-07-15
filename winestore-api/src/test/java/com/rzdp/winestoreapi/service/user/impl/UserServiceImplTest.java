@@ -2,9 +2,11 @@ package com.rzdp.winestoreapi.service.user.impl;
 
 import com.rzdp.winestoreapi.config.properties.EmailProperties;
 import com.rzdp.winestoreapi.config.properties.MessageProperties;
+import com.rzdp.winestoreapi.config.properties.MessageProperties.ExceptionMessage.ConfirmSignUp;
 import com.rzdp.winestoreapi.constant.UserRole;
 import com.rzdp.winestoreapi.dto.MailDto;
 import com.rzdp.winestoreapi.dto.UserDto;
+import com.rzdp.winestoreapi.dto.request.ConfirmSignUpRequest;
 import com.rzdp.winestoreapi.dto.request.SignInRequest;
 import com.rzdp.winestoreapi.dto.request.SignUpRequest;
 import com.rzdp.winestoreapi.dto.response.MessageResponse;
@@ -12,8 +14,10 @@ import com.rzdp.winestoreapi.dto.response.SignInResponse;
 import com.rzdp.winestoreapi.entity.Account;
 import com.rzdp.winestoreapi.entity.Role;
 import com.rzdp.winestoreapi.entity.User;
+import com.rzdp.winestoreapi.entity.UserCode;
 import com.rzdp.winestoreapi.exception.AccountAlreadyExistException;
 import com.rzdp.winestoreapi.exception.AccountAlreadyVerifiedException;
+import com.rzdp.winestoreapi.exception.ConfirmSignUpException;
 import com.rzdp.winestoreapi.exception.EmailException;
 import com.rzdp.winestoreapi.security.JwtProvider;
 import com.rzdp.winestoreapi.service.account.ExistsAccountByEmail;
@@ -37,6 +41,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Optional;
 
 import static com.rzdp.winestoreapi.config.properties.MessageProperties.ExceptionMessage;
 import static com.rzdp.winestoreapi.config.properties.MessageProperties.ExceptionMessage.AlreadyExist;
@@ -112,6 +118,9 @@ class UserServiceImplTest {
 
     @Mock
     private AlreadyVerified alreadyVerifiedMessagePropertiesMock;
+
+    @Mock
+    private ConfirmSignUp confirmSignUpMessagePropertiesMock;
 
     @Test
     @DisplayName("getUserById() returns UserDto when successful")
@@ -506,7 +515,19 @@ class UserServiceImplTest {
 
 
         // Act & Assert
-        MessageResponse response = userService.confirmSignUp(userId);
+        ConfirmSignUpRequest request = new ConfirmSignUpRequest();
+        request.setCode("111111");
+
+        when(messagePropertiesMock.getException())
+                .thenReturn(exceptionMessagePropertiesMock);
+
+        when(exceptionMessagePropertiesMock.getConfirmSignUp())
+                .thenReturn(confirmSignUpMessagePropertiesMock);
+
+        when(confirmSignUpMessagePropertiesMock.getInvalidCode())
+                .thenReturn("Invalid code");
+
+        MessageResponse response = userService.confirmSignUp(userId, request);
 
         assertThat(response).isNotNull();
         assertThat(response).isInstanceOf(MessageResponse.class);
@@ -535,8 +556,40 @@ class UserServiceImplTest {
                 .thenReturn("User account already active or verified");
 
         // Act & Assert
+        ConfirmSignUpRequest request = new ConfirmSignUpRequest();
+        request.setCode("111111");
         assertThatExceptionOfType(AccountAlreadyVerifiedException.class)
-                .isThrownBy(() -> userService.confirmSignUp(userId));
+                .isThrownBy(() -> userService.confirmSignUp(userId, request));
+    }
+
+    @Test
+    @DisplayName("confirmSignUp() throws ConfirmSignUpException when no active sign up request")
+    void confirmSignUp_ThrowsAlreadyVerifiedException_WhenNoActiveSignUpRequest() {
+        User user = TestUtil.getUserData();
+        user.setActive(false);
+        user.getAccount().setVerified(false);
+        long userId = user.getUserId();
+
+        when(getUserByIdMock.run(userId))
+                .thenReturn(user);
+
+        when(createUserMock.run(user))
+                .thenReturn(user);
+
+        when(messagePropertiesMock.getException())
+                .thenReturn(exceptionMessagePropertiesMock);
+
+        when(exceptionMessagePropertiesMock.getConfirmSignUp())
+                .thenReturn(confirmSignUpMessagePropertiesMock);
+
+        when(confirmSignUpMessagePropertiesMock.getInvalidCode())
+                .thenReturn("Invalid code");
+
+        // Act & Assert
+        ConfirmSignUpRequest request = new ConfirmSignUpRequest();
+        request.setCode("000000");
+        assertThatExceptionOfType(ConfirmSignUpException.class)
+                .isThrownBy(() -> userService.confirmSignUp(userId, request));
     }
 
 }

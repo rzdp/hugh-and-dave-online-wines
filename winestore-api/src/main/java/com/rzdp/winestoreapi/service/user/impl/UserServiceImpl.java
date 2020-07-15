@@ -4,8 +4,8 @@ import com.rzdp.winestoreapi.config.properties.EmailProperties;
 import com.rzdp.winestoreapi.config.properties.ImageUserProperties;
 import com.rzdp.winestoreapi.config.properties.MessageProperties;
 import com.rzdp.winestoreapi.constant.UserRole;
-import com.rzdp.winestoreapi.dto.MailDto;
 import com.rzdp.winestoreapi.dto.UserDto;
+import com.rzdp.winestoreapi.dto.request.ConfirmSignUpRequest;
 import com.rzdp.winestoreapi.dto.request.SignInRequest;
 import com.rzdp.winestoreapi.dto.request.SignUpRequest;
 import com.rzdp.winestoreapi.dto.response.MessageResponse;
@@ -13,9 +13,10 @@ import com.rzdp.winestoreapi.dto.response.SignInResponse;
 import com.rzdp.winestoreapi.dto.response.SignUpResponse;
 import com.rzdp.winestoreapi.entity.Account;
 import com.rzdp.winestoreapi.entity.User;
+import com.rzdp.winestoreapi.entity.UserCode;
 import com.rzdp.winestoreapi.exception.AccountAlreadyExistException;
 import com.rzdp.winestoreapi.exception.AccountAlreadyVerifiedException;
-import com.rzdp.winestoreapi.exception.EmailException;
+import com.rzdp.winestoreapi.exception.ConfirmSignUpException;
 import com.rzdp.winestoreapi.exception.UserUpdatePhotoException;
 import com.rzdp.winestoreapi.mapper.RegisterRequestToUserMapper;
 import com.rzdp.winestoreapi.mapper.UserToUserDtoMapper;
@@ -46,9 +47,8 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -217,15 +217,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public MessageResponse confirmSignUp(long userId) {
+    public MessageResponse confirmSignUp(long userId, ConfirmSignUpRequest request) {
         // Get user
         log.info("Verifying user account with id {}", userId);
         User user = getUserById.run(userId);
+
+        // Validate user if active or not
         Account account = user.getAccount();
         if (user.isActive() || account.isVerified()) {
             throw new AccountAlreadyVerifiedException(messageProperties
                     .getException().getAlreadyVerified().getAccount());
         }
+
+        // Validate code
+        Optional<UserCode> optionalUserCode = user.getUserCodes().stream()
+                .filter(userCode -> userCode.getCode().equals(request.getCode()))
+                .filter(UserCode::isActive)
+                .findFirst();
+        if (!optionalUserCode.isPresent()) {
+            throw new ConfirmSignUpException(messageProperties.getException()
+                    .getConfirmSignUp().getInvalidCode());
+        }
+
+        // Activate user
+        UserCode userCode = optionalUserCode.get();
+        userCode.setActive(false);
         user.setActive(true);
         account.setVerified(true);
         user.setAccount(account);
@@ -233,6 +249,7 @@ public class UserServiceImpl implements UserService {
         log.info("User account of {} verified successfully!", user.getFullName());
         return new MessageResponse(messageProperties.getSuccess().getVerifySignUp());
     }
+
 
     @Override
     @Transactional

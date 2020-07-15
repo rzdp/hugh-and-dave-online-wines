@@ -4,8 +4,10 @@ import com.rzdp.winestoreapi.config.properties.EmailProperties;
 import com.rzdp.winestoreapi.config.properties.MessageProperties;
 import com.rzdp.winestoreapi.dto.MailDto;
 import com.rzdp.winestoreapi.entity.User;
+import com.rzdp.winestoreapi.entity.UserCode;
 import com.rzdp.winestoreapi.exception.EmailException;
 import com.rzdp.winestoreapi.service.email.EmailService;
+import com.rzdp.winestoreapi.service.usercode.CreateUserCode;
 import com.rzdp.winestoreapi.utils.StringUtils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -43,10 +45,11 @@ public class EmailServiceImpl implements EmailService {
     private final MessageProperties messageProperties;
 
     @Autowired
-    public EmailServiceImpl(JavaMailSender javaMailSender,
+    public EmailServiceImpl(CreateUserCode createUserCode, JavaMailSender javaMailSender,
                             Configuration freeMarkerConfiguration,
                             EmailProperties emailProperties,
                             MessageProperties messageProperties) {
+        this.createUserCode = createUserCode;
         this.javaMailSender = javaMailSender;
         this.freeMarkerConfiguration = freeMarkerConfiguration;
         this.emailProperties = emailProperties;
@@ -56,12 +59,15 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendUserVerificationEmail(User user, String email) {
         log.info("Sending user verification via email to user");
-        long userId = user.getUserId();
 
+        // Generate code
+        UserCode userCode = createUserCode.run(new UserCode(user,
+                StringUtils.generateOtp(6), true));
+
+        // Create Mail Request
         Map<String, Object> props = new HashMap<>();
         props.put("firstName", user.getFirstName());
-        props.put("code", StringUtils.generateOtp(6));
-
+        props.put("code", userCode.getCode());
         MailDto mailDto = MailDto.builder()
                 .sender(emailProperties.getSender())
                 .receiver(email)
@@ -69,6 +75,7 @@ public class EmailServiceImpl implements EmailService {
                 .props(props)
                 .build();
 
+        // Send Email
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper;
         try {

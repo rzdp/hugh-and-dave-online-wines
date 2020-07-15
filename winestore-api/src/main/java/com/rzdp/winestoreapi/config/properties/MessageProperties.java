@@ -27,9 +27,11 @@ public class MessageProperties {
         private DataNotFound dataNotFound;
         private AlreadyExist alreadyExist;
         private AlreadyVerified alreadyVerified;
+        private UniqueData uniqueData;
         private UpdatePhoto updatePhoto;
         private UploadFile uploadFile;
         private UserVerification userVerification;
+        private ConfirmSignUp confirmSignUp;
 
 
         @Data
@@ -50,6 +52,11 @@ public class MessageProperties {
         }
 
         @Data
+        public static class UniqueData {
+            private String userCode;
+        }
+
+        @Data
         public static class UpdatePhoto {
             private String user;
         }
@@ -62,6 +69,11 @@ public class MessageProperties {
         @Data
         public static class UserVerification {
             private String email;
+        }
+
+        @Data
+        public static class ConfirmSignUp {
+            private String invalidCode;
         }
     }
 }

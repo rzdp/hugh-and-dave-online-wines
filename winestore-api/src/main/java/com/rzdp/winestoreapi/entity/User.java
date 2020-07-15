@@ -91,6 +91,9 @@ public class User extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserImage> userImages;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<UserCode> userCodes;
+
     public String getFullName() {
         return firstName + " " + middleName + " " + lastName;
     }

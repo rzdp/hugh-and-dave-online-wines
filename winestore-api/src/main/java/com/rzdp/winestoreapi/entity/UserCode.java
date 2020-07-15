@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,4 +51,9 @@ public class UserCode extends BaseEntity {
     @Column(name = "Active")
     private boolean active;
 
+    public UserCode(User user, String code, boolean active) {
+        this.user = user;
+        this.code = code;
+        this.active = active;
+    }
 }
